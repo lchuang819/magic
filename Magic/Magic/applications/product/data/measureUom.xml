@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<total>6</total>
+	<MeasureItem>
+		<MeasureUomName>毫米 [mm]</MeasureUomName>
+		<MeasureUomId>mm</MeasureUomId>
+	</MeasureItem>
+	<MeasureItem>
+		<MeasureUomName>厘米 [cm]</MeasureUomName>
+		<MeasureUomId>cm</MeasureUomId>
+	</MeasureItem>
+	<MeasureItem>
+		<MeasureUomName>分米 [dm]</MeasureUomName>
+		<MeasureUomId>dm</MeasureUomId>
+	</MeasureItem>
+	<MeasureItem>
+		<MeasureUomName>米 [m]</MeasureUomName>
+		<MeasureUomId>m</MeasureUomId>
+	</MeasureItem>
+	<MeasureItem>
+		<MeasureUomName>英尺 [ft]</MeasureUomName>
+		<MeasureUomId>ft</MeasureUomId>
+	</MeasureItem>
+	<MeasureItem>
+		<MeasureUomName>英寸 [in]</MeasureUomName>
+		<MeasureUomId>in</MeasureUomId>
+	</MeasureItem>
+</dataset>

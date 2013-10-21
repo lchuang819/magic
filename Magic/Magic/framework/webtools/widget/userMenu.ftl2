@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/ext-all.css"/>
+<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/icons.css"/>
+<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/customer/ux.css"/>
+<link rel="shortcut icon" href="/Magic/framework/resources/icons/favicon.gif"/> 
+<script type="text/javascript" src="/Magic/framework/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="/Magic/framework/scripts/ext-all.js"></script>
+<script type="text/javascript" src="/Magic/framework/scripts/ux.js"></script>
+<script type="text/javascript" src="/Magic/framework/base/js/util.js"></script>
+<script type="text/javascript" src="/Magic/applications/commonjs/common-applications.js"></script>
+<title>Build</title>
+
+<STYLE>
+.cc
+{
+	color:white;
+	text-align:center;
+}
+
+/* ==== Styles For The Html Log === */
+.DEBUG {
+color: #808080;
+font-size:80%;
+}
+
+.WARN {
+color: #0000ff;
+font-weight: bold;
+font-size:80%;
+}
+
+.INFO{
+color: #008000;
+font-size:80%;
+}
+
+.ERROR {
+border: 0.2em solid #ff0000;
+color: #ff0000;
+font-weight: bold;
+font-size:90%;
+}
+
+</STYLE>
+
+<script type="text/javascript">
+		
+	var modules = [
+		<#list labelList as userMap>
+        {id:'${userMap.id?default('')}',text:'${userMap.text}',isroot:<#if '${userMap.isroot}'=='true'>true<#else>false</#if>,iconCls:'${userMap.iconCls}',html:'${userMap.html}',jsPath:'${userMap.jsPath?default('')}'}
+        <#if userMap_has_next>,</#if>
+        </#list>
+	];
+	
+	var username;
+	var loginIP;
+
+		username = "<span class='cc'>登陆用户:${userInfo.userLoginId} 姓名:${userInfo.nickName}</span> <br>";
+		username = username + "<span class='cc'>登陆IP:${userInfo.loginIP}</span>";
+	
+
+
+Ext.onReady(function(){
+		var viewport = new Ext.Viewport({
+            layout: 'border',
+            items: [
+            // create instance immediately
+            {
+                // lazily created panel (xtype:'panel' is default)
+                region: 'north',
+                split: true,
+                height: 100,
+                border: false,
+                items:[
+                	{	region:'north',
+                		height: 75,
+                		bodyStyle:'background-color:#126499;padding:10 0 10 10',
+                		html:username
+                    },
+                	tb
+                    ],
+                margins: '0 0 0 0'
+            },{
+                // lazily created panel (xtype:'panel' is default)
+                region: 'south',
+                split: true,
+                height: 100,
+                minSize: 100,
+                maxSize: 200,
+                collapsible: true,
+                title: 'South',
+                margins: '0 0 0 0'
+            },
+            tabpanel
+           
+            ]
+        });
+
+	});
+	
+	createToolbar(modules);
+</script>
+
+</head>
+<body>
+
+    
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+  <BuildGroupMenus groupId="BIZADMIN" menuId="data" menuName="数据" /> 
+  <BuildGroupMenus groupId="BIZADMIN" menuId="dataManage" menuName="数据管理" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="catalog" menuName="目录" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="catalogCategory" menuName="分类管理" lastUpdatedStamp="2011-10-25 10:32:41.0" lastUpdatedTxStamp="2011-10-25 10:32:41.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="catalogManage" menuName="目录管理" lastUpdatedStamp="2011-10-25 10:31:03.0" lastUpdatedTxStamp="2011-10-25 10:31:03.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="catalogProduct" menuName="产品" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="data" menuName="数据" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="dataManage" menuName="数据管理" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="dataQuery" menuName="数据查询" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="facility" menuName="仓储设施" lastUpdatedStamp="2011-10-31 15:25:29.0" lastUpdatedTxStamp="2011-10-31 15:25:29.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="facilityInventory" menuName="库存管理" lastUpdatedStamp="2011-10-31 15:25:29.0" lastUpdatedTxStamp="2011-10-31 15:25:29.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="party" menuName="成员组织" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="partyCreate" menuName="创建新的" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="partyMgr" menuName="成员管理" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="setting" menuName="设置" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="settingMenu" menuName="菜单设置" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="settingPermission" menuName="权限分配" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="settingPerson" menuName="个人设置" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="settingSystem" menuName="系统设置" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="settingUsergroup" menuName="角色分配" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="system" menuName="系统工具" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="systemConsole" menuName="控制台" lastUpdatedStamp="2011-10-21 16:22:57.0" lastUpdatedTxStamp="2011-10-21 16:22:57.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="systemLog" menuName="系统日志" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildGroupMenus groupId="FULLADMIN" menuId="systemPerformance" menuName="系统性能" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildMenus menuId="catalog" parentId="source" menuName="目录" iconCls="icon-menu" isroot="true" enable="Y" sequenceId="4" contentPath="#" /> 
+  <BuildMenus menuId="catalogCategory" parentId="catalog" menuName="分类管理" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="" contentPath="applications/catalog/js/categoryManage.js" lastUpdatedStamp="2011-10-28 15:01:24.0" lastUpdatedTxStamp="2011-10-28 15:01:24.0" /> 
+  <BuildMenus menuId="catalogManage" parentId="catalog" menuName="目录管理" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="42" contentPath="applications/catalog/js/catalogManage.js" lastUpdatedStamp="2011-10-25 10:30:52.0" lastUpdatedTxStamp="2011-10-25 10:30:52.0" /> 
+  <BuildMenus menuId="catalogProduct" parentId="catalog" menuName="产品管理" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="" contentPath="applications/product/js/catalogProduct.js" lastUpdatedStamp="2011-10-28 14:27:43.0" lastUpdatedTxStamp="2011-10-28 14:27:43.0" /> 
+  <BuildMenus menuId="data" parentId="source" menuName="数据" iconCls="icon-menu" isroot="true" enable="Y" sequenceId="3" contentPath="html" /> 
+  <BuildMenus menuId="dataManage" parentId="data" menuName="数据管理" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="" contentPath="" /> 
+  <BuildMenus menuId="dataQuery" parentId="data" menuName="数据查询" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="31" contentPath="framework/webtools/js/dataQuery.js" /> 
+  <BuildMenus menuId="facility" parentId="source" menuName="仓储设施" iconCls="icon-menu" isroot="true" enable="Y" sequenceId="6" contentPath="framework/sysmanage/widget/personalSetting.ftl" lastUpdatedStamp="2011-10-31 15:23:42.0" lastUpdatedTxStamp="2011-10-31 15:23:42.0" /> 
+  <BuildMenus menuId="facilityInventory" parentId="facility" menuName="库存管理" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="61" contentPath="applications/facility/js/facilityInventory.js" lastUpdatedStamp="2011-10-31 15:25:19.0" lastUpdatedTxStamp="2011-10-31 15:25:19.0" /> 
+  <BuildMenus menuId="party" parentId="source" menuName="成员组织" iconCls="icon-menu" isroot="true" enable="Y" sequenceId="5" contentPath="#" /> 
+  <BuildMenus menuId="partyCreate" parentId="party" menuName="创建新的" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="52" contentPath="applications/party/js/partyCreate.js" /> 
+  <BuildMenus menuId="partyMgr" parentId="party" menuName="成员管理" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="51" contentPath="applications/party/js/partyMgr.js" /> 
+  <BuildMenus menuId="setting" parentId="source" menuName="设置" iconCls="icon-menu" isroot="true" enable="Y" sequenceId="1" contentPath="html" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildMenus menuId="settingMenu" parentId="setting" menuName="菜单设置" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="11" contentPath="framework/sysmanage/js/menuSetting.js" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildMenus menuId="settingPermission" parentId="setting" menuName="权限分配" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="14" contentPath="framework/sysmanage/js/permissionSetting.js" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildMenus menuId="settingPerson" parentId="setting" menuName="个人设置" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="12" contentPath="framework/sysmanage/js/personalSetting.js" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildMenus menuId="settingSystem" parentId="setting" menuName="系统设置" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="13" contentPath="framework/sysmanage/js/systemSetting.js" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildMenus menuId="settingUsergroup" parentId="setting" menuName="角色分配" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="15" contentPath="framework/sysmanage/js/usergroupSetting.js" /> 
+  <BuildMenus menuId="system" parentId="source" menuName="系统工具" iconCls="icon-menu" isroot="true" enable="Y" sequenceId="2" contentPath="html" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildMenus menuId="systemConsole" parentId="system" menuName="控制台" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="" contentPath="framework/webtools/js/systemConsole.js" lastUpdatedStamp="2011-10-21 16:22:03.0" lastUpdatedTxStamp="2011-10-21 16:22:03.0" /> 
+  <BuildMenus menuId="systemLog" parentId="system" menuName="系统日志" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="" contentPath="framework/webtools/js/systemLog.js" /> 
+  <BuildMenus menuId="systemParams" parentId="system" menuName="系统参数" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="23" contentPath="html" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildMenus menuId="systemPerformance" parentId="system" menuName="系统性能" iconCls="icon-plugin" isroot="false" enable="Y" sequenceId="22" contentPath="html" lastUpdatedStamp="2011-09-28 10:13:00.0" lastUpdatedTxStamp="2011-09-28 10:13:00.0" createdStamp="2011-09-28 10:13:00.0" createdTxStamp="2011-09-28 10:13:00.0" /> 
+  <BuildUserInfo userId="admin" nickName="刘闯" /> 
+  <BuildUserInfo userId="lchuang" nickName="刘闯2" /> 
+
+</entity-engine-xml>

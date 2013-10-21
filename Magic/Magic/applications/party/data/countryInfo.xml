@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<totalCount>2</totalCount>
+	<country>
+		<countryName>中国</countryName>
+		<countryCode>CN</countryCode>
+		<province name="吉林省">
+			<provinceName>吉林省</provinceName>
+			<provinceCode>JLP</provinceCode>
+			<city>
+				<cityName>吉林市</cityName>
+				<cityCode>JL</cityCode>
+			</city>
+			<city>
+				<cityName>长春</cityName>
+				<cityCode>CC</cityCode>
+				<urban>
+					<urbanName>朝阳区</urbanName>
+					<urbanCode>CYQ</urbanCode>
+				</urban>
+				<urban>
+					<urbanName>绿园区</urbanName>
+					<urbanCode>LYQ</urbanCode>
+				</urban>
+			</city>
+		</province>
+		<province>
+			<provinceName>辽宁省</provinceName>
+			<provinceCode>LN</provinceCode>
+			<city>
+				<cityName>沈阳</cityName>
+				<cityCode>SY</cityCode>
+			</city>
+			<city>
+				<cityName>鞍山</cityName>
+				<cityCode>AS</cityCode>
+				<urban>
+					<urbanName>朝阳区</urbanName>
+					<urbanCode>CYQ</urbanCode>
+				</urban>
+				<urban>
+					<urbanName>绿园区</urbanName>
+					<urbanCode>LYQ</urbanCode>
+				</urban>
+			</city>
+		</province>
+		<province>
+			<provinceName>浙江省</provinceName>
+			<provinceCode>ZJ</provinceCode>
+		</province>
+	</country>
+</dataset>

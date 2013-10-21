@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName"
+	xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="  
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd  
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+     
+	<!-- 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 -->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+        
+	<bean class="org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName"
+            value="com.mysql.jdbc.Driver">
+        </property>
+        <property name="url"
+            value="jdbc:mysql://localhost:3306/ofbiz?autoReconnect=true">
+        </property>
+        <property name="username" value="root"></property>
+        <property name="password" value="ofbiz"></property>
+        <property name="initialSize" value="5" />
+  		<property name="maxActive"><value>80</value></property>  
+    	<property name="maxIdle"><value>20</value></property>  
+    	<property name="maxWait"><value>30000</value></property> 
+  		<property name="poolPreparedStatements" value="true" />
+  		<property name="defaultAutoCommit" value="false" />
+  		
+	</bean>
+	
+	
+	<bean id="sessionFactory"
+        class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+        
+        <property name="mappingResources">
+            <list>
+            	<!-- 
+            	<value>com/magic/entitymodel/BuildUserMenus.hbm.xml</value>
+            	<value>com/magic/entitymodel/BuildMenus.hbm.xml</value>
+            	<value>com/magic/entitymodel/BuildGroupMenus.hbm.xml</value>
+            	 -->
+            </list>
+        </property>
+        
+        <property name="mappingDirectoryLocations">
+            <list>
+            	<value>WEB-INF/mappings/framework/common</value>
+            	<value>WEB-INF/mappings/framework/content</value>
+            	<value>WEB-INF/mappings/framework/security</value>
+            	<value>WEB-INF/mappings/applications/party</value>
+            	<value>WEB-INF/mappings/applications/order</value>
+            	<value>WEB-INF/mappings/applications/product</value>
+            	<value>WEB-INF/mappings/applications/catalog</value>
+            	<value>WEB-INF/mappings/applications/facility</value>
+            	<!--  -->
+            	
+            </list>
+		</property>
+        
+        <property name="hibernateProperties">
+            <props>
+            	<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+            	<prop key="hibernate.show_sql">false</prop>
+            	<prop key="hibernate.jdbc.batch_size">20</prop>
+            	<prop key="hibernate.jdbc.fetch_size">20</prop>
+            	<prop key="hibernate.generate_statistics">true</prop>
+            </props>
+        </property>
+		
+		<property name="eventListeners">
+            <map>
+            	<entry key="merge">
+            		<bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener"/>
+            	</entry>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+    	<property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+    <bean id="sequencer" class="com.magic.util.SequenceUtil">
+    	<constructor-arg value="ofbiztest"></constructor-arg>
+    	<constructor-arg value="sequence_value_item"></constructor-arg>
+    	<constructor-arg value="seq_name"></constructor-arg>
+    	<constructor-arg value="seq_id"></constructor-arg>
+    </bean>
+    
+    <bean id="delegator" class="com.magic.entity.HibernateDelegator" autowire="byName">
+    	<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+    </bean>
+    
+    <bean id="dsTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- HibernateTransactionManager bean需要依赖注入一个SessionFactory bean的引用 -->
+		<property name="dataSource">
+			<ref local="dataSource"/>
+		</property>
+	</bean>
+	
+	<!-- 第二种事务配置 -->
+	<!-- 定义事务管理器，使用适用于Hibernte的事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<!-- HibernateTransactionManager bean需要依赖注入一个SessionFactory bean的引用 -->
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">  
+          
+        <tx:attributes>  
+            <!-- all methods starting with 'get' are read-only -->  
+            <tx:method name="find*" read-only="true" />  
+            <!-- other methods use the default transaction settings (see below) -->  
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>  
+    </tx:advice>
+    
+    <aop:config>  
+	    <aop:pointcut expression="execution(* com.magic.entity.*.*(..))" id="dao-pc"/>  
+	    <aop:pointcut expression="execution(* *..service.*.*(..))" id="service-pc"/>  
+	    <aop:advisor advice-ref="txAdvice" pointcut-ref="dao-pc"/>
+	    <aop:advisor advice-ref="txAdvice" pointcut-ref="service-pc"/>
+	</aop:config>
+	
+	<!-- 事务配置结束 -->
+	
+	<!-- 用于更精细的事务粒度控制 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+	
+	<!-- 
+	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	    
+    <bean id="sequenceUtil" class="com.magic.util.hibernate.SequenceUtil">
+    	<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+		<property name="transactionTemplate">
+			<ref bean="transactionTemplate"/>
+		</property>
+    </bean>
+     -->
+	
+	<!-- Framework Common -->
+	<bean id="baseService" class="com.magic.service.BaseService">
+		<property name="delegator">
+			<ref bean="delegator"/>
+		</property>
+	</bean>
+	
+	<bean id="commonService" class="com.frm.common.service.CommonService"/>
+	
+	<!-- Framework Webtools -->
+	<bean id="loginService" class="com.frm.webtools.service.LoginService"/>
+	<bean id="userLoginService" class="com.frm.webtools.service.UserLoginService"/>
+	<bean id="logoutService" class="com.frm.webtools.service.LogoutService"/>
+	<bean id="loadUserMenusService" class="com.frm.webtools.service.LoadUserMenusService"/>
+	<bean id="registerOrganizationService" class="com.frm.webtools.service.RegisterOrganizationService"/>
+	
+	<!-- Applications Content -->
+	<bean id="contentService" class="com.frm.content.service.ContentService"/>
+	
+	<bean id="dataQueryService" class="com.frm.entity.service.DataQueryService"/>
+	<bean id="menuTreeLoaderService" class="com.frm.sysmanage.service.MenuTreeLoaderService"/>
+	<bean id="menuTreeManageService" class="com.frm.sysmanage.service.MenuTreeManageService"/>
+	<bean id="checkMenuTreeLoaderService" class="com.frm.sysmanage.service.CheckMenuTreeLoaderService"/>
+	<bean id="securityGroupTreeLoaderService" class="com.frm.sysmanage.service.SecurityGroupTreeLoaderService"/>
+	<bean id="permissionMenuTreeManagerService" class="com.frm.sysmanage.service.PermissionMenuTreeManagerService"/>
+	<bean id="permissionUsergroupManagerService" class="com.frm.sysmanage.service.PermissionUsergroupManagerService"/>
+	<bean id="systemSettingManagerService" class="com.frm.sysmanage.service.SystemSettingManagerService"/>
+	<bean id="loadParamsService" class="com.frm.common.service.LoadParamsService"/>
+	
+	<!-- Applications Product -->
+	<bean id="productManagerService" class="com.apps.product.service.ProductManagerService"/>
+	<bean id="productLoaderService" class="com.apps.product.service.ProductLoaderService"/>
+	<bean id="productPriceService" class="com.apps.product.service.ProductPriceService"/>
+	
+	<!-- Applications Party -->
+	<bean id="partyLoaderService" class="com.apps.party.service.PartyLoaderService"/>
+	<bean id="partyGroupService" class="com.apps.party.service.PartyGroupService"/>
+	<bean id="partyManagerService" class="com.apps.party.service.PartyManagerService"/>
+	<bean id="contactMechService" class="com.apps.party.service.ContactMechService"/>
+	<bean id="postalAddressService" class="com.apps.party.service.PostalAddressService"/>
+	<bean id="telecomNumberService" class="com.apps.party.service.TelecomNumberService"/>
+	<bean id="geoService" class="com.apps.party.service.GeoService"/>
+	<bean id="roleService" class="com.apps.party.service.RoleService"/>
+	<bean id="partyRelationshipService" class="com.apps.party.service.PartyRelationshipService"/>
+	
+	<!-- Applications Catalog -->
+	<bean id="catalogService" class="com.apps.catalog.service.CatalogService"/>
+	<bean id="categoryService" class="com.apps.catalog.service.CategoryService"/>
+	
+	<!-- Applications Order -->
+	<bean id="orderService" class="com.apps.order.service.OrderService"/>
+	
+	<!-- Applications Facility -->
+	<bean id="facilityService" class="com.apps.facility.service.FacilityService"/>
+	
+</beans>
+

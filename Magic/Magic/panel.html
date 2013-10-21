@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="resources/css/ext-all.css"/>
+<link rel="stylesheet" type="text/css" href="resources/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="css/customer.css"/>
+
+<script type="text/javascript" src="adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="scripts/ext-all.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+//eval("var cust = new cust()");
+loadjs=function(path){
+	if(path == null){
+		return;
+	}
+	Ext.Ajax.request({
+    		url:path,
+    		method:'GET',scope: this,
+    		success: function(o){
+				//alert(o.responseText);
+    			eval(o.responseText);
+    		},
+    		failure:function(){alert("Error");}
+    	});
+};
+Ext.onReady(function(){
+
+
+	new Ext.Viewport({
+	    layout: 'border',
+	    items: [{
+	        region: 'north',
+	        html: '<h1 class="x-panel-header">Page Title</h1>',
+	        autoHeight: true,
+	        border: false,
+	        margins: '0 0 5 0'
+	    }, {
+	        region: 'west',
+	        collapsible: true,
+	        title: 'Navigation',
+	        xtype: 'treepanel',
+	        width: 200,
+	        autoScroll: true,
+	        split: true,
+	        loader: new Ext.tree.TreeLoader(),
+	        root: new Ext.tree.AsyncTreeNode({
+	            expanded: true,
+	            children: [{
+	                text: 'Menu Option 1',
+	                leaf: true
+	            }, {
+	                text: 'Menu Option 2',
+	                leaf: true
+	            }, {
+	                text: 'Menu Option 3',
+	                leaf: true
+	            }]
+	        }),
+	        rootVisible: false,
+	        listeners: {
+	            click: function(n) {
+	                Ext.Msg.alert('Navigation Tree Click', 'You clicked: "' + n.attributes.text + '"');
+	            }
+	        }
+	    }, {
+	        region: 'center',
+	        xtype: 'tabpanel',
+	        items: [{
+	            title: 'Default Tab',
+	            id:'tb',
+	            layout:'border',
+		        items:[
+		               {
+			            	region: 'west',
+			       	        collapsible: true,
+			       	        title: 'Navigation',
+			       	        xtype: 'treepanel',
+			       	        width: 200,
+			       	     	height:this.height,
+			       	        autoScroll: true,
+			       	        split: true,
+			       	        loader: new Ext.tree.TreeLoader(),
+			       	        root: new Ext.tree.AsyncTreeNode({
+			       	            expanded: true,
+			       	            children: [{
+				       	            id:'Mo1',
+			       	                text: 'Menu Option 1',
+			       	                leaf: true
+			       	            }, {
+			       	                text: 'Menu Option 2',
+			       	                leaf: true
+			       	            }, {
+			       	                text: 'Menu Option 3',
+			       	                leaf: true
+			       	            }]
+			       	        }),
+			       	        rootVisible: false,
+			       	        listeners: {
+			       	            click: function(n) {
+		            	             //Ext.Msg.alert('Navigation Tree Click', 'You clicked: "' + n.attributes.text + '"');
+			       	            		loadjs("/Magic/res/cust.js");
+					       	            },
+		       	             	contextmenu:function(node, e){
+				       	             new Ext.menu.Menu({
+										items:[{text:'增加菜单',handler:function(r){
+											new Ext.Window({layout:'fit',plain:true,buttonAlign:'center',border:false,resizable:false,modal:true,width:750,height:320}).show();
+
+											}},{text:'修改菜单'}]
+					       	             }).showAt(e.getXY());
+			       	            }
+			       	        }
+		               },{
+		            	   	region: 'center',
+		       	       	 	xtype: 'tabpanel',
+		       	       	 	autoLoad:'/Magic/test.html'
+			               }
+				        ]
+	        }]
+	    }, {
+	        region: 'south',
+	        title: 'Information',
+	        collapsible: true,
+	        html: 'Information goes here',
+	        split: true,
+	        height: 100,
+	        minHeight: 100
+	    }]
+	});
+
+
+	
+	
+});
+function itemClick(){
+	//alert("日");
+}
+</script>
+
+
+<div id='toolbar'></div>
+<div id="tabs">
+	<div id="script" class="x-hide-display">
+		长度：<input type="text" id="depth"><br>
+		宽度：<input type="text" id="weight"><br>
+		高度：<input type="text" id="height"><br>
+		<input type="button" name="提交" value = "提交">
+	</div>
+	
+	<div id="markup" class="x-hide-display">
+		长度：<input type="text" id="depth"><br>
+		高度：<input type="text" id="height"><br>
+		<input type="button" name="提交" value = "提交">
+	</div>
+</div>
+</body>
+</html>

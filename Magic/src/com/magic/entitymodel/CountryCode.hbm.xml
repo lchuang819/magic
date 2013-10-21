@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-6-16 23:59:51 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.magic.entitymodel.CountryCode" table="country_code" catalog="ofbiztest">
+        <id name="countryCode" type="string">
+            <column name="country_code" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="countryAbbr" type="string">
+            <column name="country_abbr" length="60" />
+        </property>
+        <property name="countryNumber" type="string">
+            <column name="country_number" length="60"/>
+        </property>
+        <property name="countryName" type="string">
+            <column name="country_name" length="255" />
+        </property>
+        
+        <property name="lastUpdatedStamp" type="timestamp">
+            <column name="LAST_UPDATED_STAMP" length="19" />
+        </property>
+        <property name="lastUpdatedTxStamp" type="timestamp">
+            <column name="LAST_UPDATED_TX_STAMP" length="19" />
+        </property>
+        <property name="createdStamp" type="timestamp">
+            <column name="CREATED_STAMP" length="19" />
+        </property>
+        <property name="createdTxStamp" type="timestamp">
+            <column name="CREATED_TX_STAMP" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<total>8</total>
+	<QuantityItem>
+		<QuantityUomName>立方米 [m3]</QuantityUomName>
+		<QuantityUomId>m3</QuantityUomId>
+	</QuantityItem>
+	<QuantityItem>
+		<QuantityUomName>立方分米 [cm3]</QuantityUomName>
+		<QuantityUomId>cm3</QuantityUomId>
+	</QuantityItem>
+	<QuantityItem>
+		<QuantityUomName>立方毫米 [mm3]</QuantityUomName>
+		<QuantityUomId>mm3</QuantityUomId>
+	</QuantityItem>
+	<QuantityItem>
+		<QuantityUomName>升 [L]</QuantityUomName>
+		<QuantityUomId>L</QuantityUomId>
+	</QuantityItem>
+	<QuantityItem>
+		<QuantityUomName>毫升 [ml]</QuantityUomName>
+		<QuantityUomId>ml</QuantityUomId>
+	</QuantityItem>
+	<QuantityItem>
+		<QuantityUomName>件 [ji]</QuantityUomName>
+		<QuantityUomId>ji</QuantityUomId>
+	</QuantityItem>
+	<QuantityItem>
+		<QuantityUomName>箱 [xz]</QuantityUomName>
+		<QuantityUomId>xz</QuantityUomId>
+	</QuantityItem>
+	<QuantityItem>
+		<QuantityUomName>袋 [dz]</QuantityUomName>
+		<QuantityUomId>dz</QuantityUomId>
+	</QuantityItem>
+</dataset>

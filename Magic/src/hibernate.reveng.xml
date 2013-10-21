@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="ofbiz" match-name="build_group_menus"/>
+  <table-filter match-catalog="ofbiz" match-name="build_menus"/>
+  <table-filter match-catalog="ofbiz" match-name="build_user_menus"/>
+  <table-filter match-catalog="ofbiz" match-name="user_login"/>
+  <table-filter match-catalog="ofbiz" match-name="user_login_history"/>
+  <table-filter match-catalog="ofbiz" match-name="user_login_security_group"/>
+  <table-filter match-catalog="ofbiz" match-name="security_group"/>
+</hibernate-reverse-engineering>

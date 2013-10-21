@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<totalCount>3</totalCount>
+	<Item>
+		<attrName>目录</attrName>
+		<attrValue>CATALOG_CATEGORY</attrValue>
+	</Item>
+	<Item>
+		<attrName>产业</attrName>
+		<attrValue>INDUSTRY_CATEGORY</attrValue>
+	</Item>
+	<Item>
+		<attrName>产品</attrName>
+		<attrValue>CATALOG_PRODUCT</attrValue>
+	</Item>
+
+</dataset>

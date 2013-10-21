@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.objectFactory" value="spring" />
+	
+	<package name="productaction" extends="json-default" namespace="/">
+		<action name="productManager" class="com.apps.product.action.ProductManagerAction">
+			<result type="json"></result>
+		</action>
+		<action name="productLoader" class="com.apps.product.action.ProductLoaderAction">
+			<result type="json"></result>
+		</action>
+		<action name="productDetailLoader" class="com.apps.product.action.ProductLoaderAction" method="executeLoadProductDetail">
+			<result name="productDetail" type="freemarker">/applications/product/widget/productDetail.ftl</result>
+		</action>
+		<action name="productPrice" class="com.apps.product.action.ProductPriceAction" method="executeProductPrice">
+			<result name="productPrice" type="freemarker">/applications/product/widget/productPrice.ftl</result>
+			<result name="error" type="freemarker">/framework/webtools/widget/error.ftl</result>
+		</action>
+		<action name="productPriceLoader" class="com.apps.product.action.ProductPriceAction" method="executeProductPriceLoader">
+			<result type="json"></result>
+		</action>
+		<action name="productPriceManager" class="com.apps.product.action.ProductPriceAction" method="executeProductPriceManager">
+			<result type="json"></result>
+		</action>
+		
+		<action name="productCostsLoader" class="com.apps.product.action.ProductLoaderAction" method="executeLoadProductCosts">
+			<result name="productCosts" type="freemarker">/applications/product/widget/productCosts.ftl</result>
+		</action>
+		<action name="productCostsManager" class="com.apps.product.action.ProductLoaderAction" method="executeProductCostsManager">
+			<result type="json"></result>
+		</action>
+		
+	</package>
+	
+	<package name="partyaction" extends="json-default" namespace="/">
+		<action name="partyLoader" class="com.apps.party.action.PartyLoaderAction">
+			<result type="json"></result>
+		</action>
+		<action name="partyByLoader" class="com.apps.party.action.PartyLoaderAction" method="executeLoadPartyBy">
+			<result type="json"></result>
+		</action>
+		<action name="partyGroupManager" class="com.apps.party.action.PartyGroupAction">
+			<result type="json"></result>
+		</action>
+		<action name="partyManager" class="com.apps.party.action.PartyManagerAction">
+			<result type="json"></result>
+		</action>
+		<action name="partyDetailLoader" class="com.apps.party.action.PartyLoaderAction" method="executeLoadParyById">
+			<result name="success" type="freemarker">/applications/party/widget/partyRoleDetail.ftl</result>
+			<result name="error" type="freemarker">/framework/webtools/widget/error.ftl</result>
+		</action>
+		<action name="partyRoleLoader" class="com.apps.party.action.PartyLoaderAction" method="executeLoadParyRole">
+			<result type="json"></result>
+		</action>
+		<action name="partyRelationshipLoader" class="com.apps.party.action.PartyLoaderAction" method="executeLoadParyRelationship">
+			<result type="json"></result>
+			<exception-mapping result="exception" exception="Exception"></exception-mapping>
+			<result name="exception" type="json"></result>
+		</action>
+		<action name="partyRelationshipManager" class="com.apps.party.action.PartyManagerAction" method="executeParyRelationshipManager">
+			<result type="json"></result>
+			<exception-mapping result="exception" exception="Exception"></exception-mapping>
+			<result name="exception" type="json"></result>
+		</action>
+		<action name="partyRoleManager" class="com.apps.party.action.PartyManagerAction" method="executePartyRoleManager">
+			<result type="json"></result>
+		</action>
+		<action name="roleTypeLoader" class="com.apps.party.action.PartyLoaderAction" method="executeLoadRoleType">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	<package name="catalogaction" extends="json-default" namespace="/">
+		<action name="catalogLoader" class="com.apps.catalog.action.CatalogAction" method="executeLoader">
+			<result type="json"></result>
+		</action>
+		<action name="catalogManager" class="com.apps.catalog.action.CatalogAction" method="executeManager">
+			<result type="json"></result>
+		</action>
+		
+		<action name="categoryLoader" class="com.apps.catalog.action.CategoryAction" method="executeLoader">
+			<result type="json"></result>
+		</action>
+		<action name="categoryManager" class="com.apps.catalog.action.CategoryAction" method="executeManager">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	<package name="orderaction" extends="json-default" namespace="/">
+		<action name="orderManager" class="com.apps.order.action.OrderAction" method="executeOrderManager">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	<package name="facilityaction" extends="json-default" namespace="/">
+		<action name="facilityManager" class="com.apps.facility.action.FacilityAction" method="executeFacilityManager">
+			<result type="json"></result>
+			<exception-mapping result="exception" exception="Exception"></exception-mapping>
+			<result name="exception" type="json">
+				<param name="fuck">fuckexception</param>
+			</result>
+		</action>
+		<action name="facilityLoader" class="com.apps.facility.action.FacilityAction" method="executeFacilityLoader">
+			<result type="json"></result>
+			<exception-mapping result="exception" exception="Exception"></exception-mapping>
+			<result name="exception" type="json">
+			</result>
+		</action>
+		<action name="facilityPartiesLoader" class="com.apps.facility.action.FacilityAction" method="executeLoadFacilityParties">
+			<result type="json"></result>
+			<exception-mapping result="exception" exception="Exception"></exception-mapping>
+			<result name="exception" type="json">
+			</result>
+		</action>
+		
+	</package>
+</struts>

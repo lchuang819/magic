@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<totalCount>3</totalCount>
+	<Item>
+		<attrName>缺省价格</attrName>
+		<attrValue>DEFAULT_PRICE</attrValue>
+	</Item>
+	<Item>
+		<attrName>平均花费</attrName>
+		<attrValue>AVERAGE_COST</attrValue>
+	</Item>
+	<Item>
+		<attrName>竞争对手价格</attrName>
+		<attrValue>COMPETITIVE_PRICE</attrValue>
+	</Item>
+	<Item>
+		<attrName>标价</attrName>
+		<attrValue>LIST_PRICE</attrValue>
+	</Item>
+	<Item>
+		<attrName>最高价</attrName>
+		<attrValue>MAXIMUM_PRICE</attrValue>
+	</Item>
+	<Item>
+		<attrName>最低价</attrName>
+		<attrValue>MINIMUM_PRICE</attrValue>
+	</Item>
+	<Item>
+		<attrName>促销价</attrName>
+		<attrValue>PROMO_PRICE</attrValue>
+	</Item>
+	<Item>
+		<attrName>特别促销价</attrName>
+		<attrValue>SPECIAL_PROMO_PRICE</attrValue>
+	</Item>
+	<Item>
+		<attrName>总代理价</attrName>
+		<attrValue>WHOLESALE_PRICE</attrValue>
+	</Item>	
+</dataset>

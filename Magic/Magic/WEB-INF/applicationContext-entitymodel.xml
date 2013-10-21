@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+       "-//SPRING//DTD BEAN//EN"
+       "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+       
+<beans default-autowire="byName">
+	
+	<!-- 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 -->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+        
+	<bean class="org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver"/>
+        
+	<bean id="user" class="com.frm.security.entitymodel.UserLogin" scope="prototype"/>
+	<bean id="logLevel" class="com.frm.sysmanage.model.LogLevel" scope="prototype"/>
+    
+	<bean id="party" class="com.apps.party.entitymodel.Party" scope="prototype"/>
+	<bean id="person" class="com.apps.party.entitymodel.Person" scope="prototype"/>
+	<bean id="postalAddress" class="com.apps.party.entitymodel.PostalAddress" scope="prototype"/>
+	<bean id="telecomNumber" class="com.apps.party.entitymodel.TelecomNumber" scope="prototype"/>
+	<bean id="contactMech" class="com.apps.party.entitymodel.ContactMech" scope="prototype"/>
+	<bean id="partyContactMechId" class="com.apps.party.entitymodel.PartyContactMechId" scope="prototype"/>
+	<bean id="partyContactMech" class="com.apps.party.entitymodel.PartyContactMech" scope="prototype"/>
+	
+    <bean id="product" class="com.apps.product.entitymodel.Product" scope="prototype"/>
+	<bean id="prodCatalog" class="com.apps.catalog.entitymodel.ProdCatalog" scope="prototype"/>
+	<bean id="prodCatalogCategory" class="com.apps.catalog.entitymodel.ProdCatalogCategory" scope="prototype"/>
+	<bean id="prodCatalogCategoryType" class="com.apps.catalog.entitymodel.ProdCatalogCategoryType" scope="prototype"/>
+	<bean id="productCategory" class="com.apps.catalog.entitymodel.ProductCategory" scope="prototype"/>
+	<bean id="productCategoryType" class="com.apps.catalog.entitymodel.ProductCategoryType" scope="prototype"/>
+</beans>
+

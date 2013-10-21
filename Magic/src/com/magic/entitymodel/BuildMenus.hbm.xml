@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-6-16 23:59:51 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.magic.entitymodel.BuildMenus" table="build_menus" catalog="ofbiztest">
+        <id name="menuId" type="string">
+            <column name="MENU_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="parentId" type="string">
+            <column name="PARENT_ID" length="60" />
+        </property>
+        <property name="menuName" type="string">
+            <column name="MENU_NAME" />
+        </property>
+        <property name="iconCls" type="string">
+            <column name="ICON_CLS" length="60" />
+        </property>
+        <property name="isroot" type="string">
+            <column name="ISROOT" length="60" />
+        </property>
+        <property name="enable" type="string">
+            <column name="ENABLE" length="60" />
+        </property>
+        <property name="sequenceId" type="string">
+            <column name="SEQUENCE_ID" length="60" />
+        </property>
+        <property name="contentPath" type="string">
+            <column name="CONTENT_PATH" />
+        </property>
+        <property name="lastUpdatedStamp" type="timestamp">
+            <column name="LAST_UPDATED_STAMP" length="19" />
+        </property>
+        <property name="lastUpdatedTxStamp" type="timestamp">
+            <column name="LAST_UPDATED_TX_STAMP" length="19" />
+        </property>
+        <property name="createdStamp" type="timestamp">
+            <column name="CREATED_STAMP" length="19" />
+        </property>
+        <property name="createdTxStamp" type="timestamp">
+            <column name="CREATED_TX_STAMP" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

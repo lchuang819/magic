@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<total>5</total>
+	<WeightItem>
+		<WeightUomName>千克 [kg]</WeightUomName>
+		<WeightUomId>kg</WeightUomId>
+	</WeightItem>
+	<WeightItem>
+		<WeightUomName>克 [g]</WeightUomName>
+		<WeightUomId>g</WeightUomId>
+	</WeightItem>
+	<WeightItem>
+		<WeightUomName>毫克 [mg]</WeightUomName>
+		<WeightUomId>mg</WeightUomId>
+	</WeightItem>
+	<WeightItem>
+		<WeightUomName>吨 [mt]</WeightUomName>
+		<WeightUomId>mt</WeightUomId>
+	</WeightItem>
+	<WeightItem>
+		<WeightUomName>磅 [lb]</WeightUomName>
+		<WeightUomId>lb</WeightUomId>
+	</WeightItem>
+</dataset>

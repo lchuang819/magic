@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+       "-//SPRING//DTD BEAN//EN"
+       "http://www.springframework.org/dtd/spring-beans.dtd">
+       
+<beans>
+	
+	
+	<bean name="LoginAction" class="com.frm.webtools.action.LoginAction">
+    </bean>
+    
+    <bean name="DataQueryAction" class="com.frm.entity.action.DataQueryAction">
+        <property name="dataQueryService">
+            <ref bean="dataQueryService"/>
+        </property>
+
+    </bean>
+    
+    <bean name="MenuTreeLoaderAction" class="com.frm.sysmanage.action.MenuTreeLoaderAction">
+        <property name="menuTreeLoaderService">
+            <ref bean="menuTreeLoaderService"/>
+        </property>
+        
+        <property name="checkMenuTreeLoaderService">
+            <ref bean="checkMenuTreeLoaderService"/>
+        </property>
+
+    </bean>
+    
+	<bean name="MenuTreeManageAction" class="com.frm.sysmanage.action.MenuTreeManageAction">
+        <property name="menuTreeManageService">
+            <ref bean="menuTreeManageService"/>
+        </property>
+
+    </bean>
+    
+    <bean name="LoadGroupsAction" class="com.frm.sysmanage.action.LoadGroupsAction">
+        <property name="securityGroupTreeLoaderService">
+            <ref bean="securityGroupTreeLoaderService"/>
+        </property>
+
+    </bean>
+    
+    <bean name="PermissionMenuTreeManagerAction" class="com.frm.sysmanage.action.PermissionMenuTreeManagerAction">
+        <property name="permissionMenuTreeManagerService">
+            <ref bean="permissionMenuTreeManagerService"/>
+        </property>
+
+    </bean>
+    
+    <bean name="PermissionUsergroupManagerAction" class="com.frm.sysmanage.action.PermissionUsergroupManagerAction">
+        <property name="permissionUsergroupManagerService">
+            <ref bean="permissionUsergroupManagerService"/>
+        </property>
+
+    </bean>
+    
+    <bean name="SystemSettingManagerAction" class="com.frm.sysmanage.action.SystemSettingManagerAction">
+        <property name="logLevel">
+            <ref bean="logLevel"/>
+        </property>
+        <property name="systemSettingManagerService">
+            <ref bean="systemSettingManagerService"/>
+        </property>
+
+    </bean>
+    
+	<bean name="ProductManagerAction" class="com.apps.product.action.ProductManagerAction">
+
+    </bean>
+</beans>
+
