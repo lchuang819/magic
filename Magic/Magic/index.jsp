@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 <link rel="shortcut icon" href="framework/resources/icons/favicon.gif"/> 
 <link rel="stylesheet" type="text/css" href="./framework/resources/css/ext-all.css"/>
 
@@ -34,8 +33,8 @@
 </style>
 
 </head>
-<body bgcolor="#6593cf" background="./framework/resources/images/customer/desk.jpg"><!-- 
-<div style="float:right;"><img src="powerdM.gif"/></div> -->
+<body bgcolor="#6593cf" background="./framework/resources/images/customer/bg-rp.png">
+<!-- <div style="float:right;"><img src="powerdM.gif"/></div> -->
 <div id="login" class="center1"></div>
 </body>
 </html>
