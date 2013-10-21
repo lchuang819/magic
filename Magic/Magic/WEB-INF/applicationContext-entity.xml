@@ -9,7 +9,7 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd  
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
      
-	<!-- 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 -->
+	<!-- 璇�BeanPostProcessor 灏嗚嚜鍔ㄨ捣浣滅敤锛屽鏍囨敞 @Autowired 鐨�Bean 杩涜鑷姩娉ㄥ叆 -->
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
         
 	<bean class="org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver"/>
@@ -22,7 +22,7 @@
             value="jdbc:mysql://localhost:3306/ofbiz?autoReconnect=true">
         </property>
         <property name="username" value="root"></property>
-        <property name="password" value="ofbiz"></property>
+        <property name="password" value="72586gtt"></property>
         <property name="initialSize" value="5" />
   		<property name="maxActive"><value>80</value></property>  
     	<property name="maxIdle"><value>20</value></property>  
@@ -104,17 +104,17 @@
     
     <bean id="dsTransactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<!-- HibernateTransactionManager bean需要依赖注入一个SessionFactory bean的引用 -->
+		<!-- HibernateTransactionManager bean闇�渚濊禆娉ㄥ叆涓�釜SessionFactory bean鐨勫紩鐢�-->
 		<property name="dataSource">
 			<ref local="dataSource"/>
 		</property>
 	</bean>
 	
-	<!-- 第二种事务配置 -->
-	<!-- 定义事务管理器，使用适用于Hibernte的事务管理器 -->
+	<!-- 绗簩绉嶄簨鍔￠厤缃�-->
+	<!-- 瀹氫箟浜嬪姟绠＄悊鍣紝浣跨敤閫傜敤浜嶩ibernte鐨勪簨鍔＄鐞嗗櫒 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<!-- HibernateTransactionManager bean需要依赖注入一个SessionFactory bean的引用 -->
+		<!-- HibernateTransactionManager bean闇�渚濊禆娉ㄥ叆涓�釜SessionFactory bean鐨勫紩鐢�-->
 		<property name="sessionFactory">
 			<ref local="sessionFactory" />
 		</property>
@@ -137,9 +137,9 @@
 	    <aop:advisor advice-ref="txAdvice" pointcut-ref="service-pc"/>
 	</aop:config>
 	
-	<!-- 事务配置结束 -->
+	<!-- 浜嬪姟閰嶇疆缁撴潫 -->
 	
-	<!-- 用于更精细的事务粒度控制 -->
+	<!-- 鐢ㄤ簬鏇寸簿缁嗙殑浜嬪姟绮掑害鎺у埗 -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
     	<property name="dataSource" ref="dataSource"/>
     </bean>

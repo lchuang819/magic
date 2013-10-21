@@ -3,6 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="shortcut icon" href="framework/resources/icons/favicon.gif"/> 
 <link rel="stylesheet" type="text/css" href="./framework/resources/css/ext-all.css"/>
@@ -13,7 +15,7 @@
 <script type="text/javascript" src="./framework/base/js/util.js"></script>
 <script type="text/javascript" src="./framework/webtools/js/loginUi.js"></script>
 <title>登陆</title>
-</head>
+
 <style type="text/css">
 
 .center1{
@@ -31,6 +33,7 @@
 
 </style>
 
+</head>
 <body bgcolor="#6593cf" background="./framework/resources/images/customer/desk.jpg"><!-- 
 <div style="float:right;"><img src="powerdM.gif"/></div> -->
 <div id="login" class="center1"></div>
