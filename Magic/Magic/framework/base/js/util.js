@@ -111,6 +111,7 @@ loadjs=function(item){
 };
 */
 loadjs=function(config){
+	Ext.getBody().mask("Loading...");
 	if(config == null){
 		return;
 	}
@@ -125,6 +126,7 @@ loadjs=function(config){
 			//alert(obj.text);
 			eval('var obj = new '+config.className+'();');
     		obj.createWindow.call(obj);
+    		Ext.getBody().unmask();//remove mask
     		},
     		failure:function(o){alert("Error:"+o.responseText);}
     	});
