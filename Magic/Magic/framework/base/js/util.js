@@ -128,7 +128,10 @@ loadjs=function(config){
     		obj.createWindow.call(obj);
     		Ext.getBody().unmask();//remove mask
     		},
-    		failure:function(o){alert("Error:"+o.responseText);}
+    		failure:function(o){
+    			alert("Error:"+o.responseText);
+    			Ext.getBody().unmask();//remove mask
+    		}
     	});
 };
 openTab=function(item){

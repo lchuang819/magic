@@ -5,22 +5,17 @@
 <hibernate-configuration>
     <session-factory>
     
-        <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
-        <property name="hibernate.connection.password">ofbiz</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/ofbiz</property>
-        <property name="hibernate.connection.username">ofbiz</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">72586gtt</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ofbiz?autoReconnect=true</property>
+        <property name="hibernate.connection.username">root</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <!-- -->
        	<property name="current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
         
-        <mapping resource="com/magic/entitymodel/UserLogin.hbm.xml" />
-        <mapping resource="com/magic/entitymodel/SecurityGroup.hbm.xml" />
-        <mapping resource="com/magic/entitymodel/BuildUserMenus.hbm.xml" />
-        <mapping resource="com/magic/entitymodel/BuildMenus.hbm.xml" />
-        <mapping resource="com/magic/entitymodel/UserLoginSecurityGroup.hbm.xml" />
-        <mapping resource="com/magic/entitymodel/UserLoginHistory.hbm.xml" />
-        <mapping resource="com/magic/entitymodel/BuildGroupMenus.hbm.xml" />
+
+
     </session-factory>
 </hibernate-configuration>

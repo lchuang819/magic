@@ -26,6 +26,7 @@ import com.magic.util.ServiceUtil;
 public class LoadParamsService extends BaseService{
 
 	public static final String module = LoadParamsService.class.getName();
+	
 	/* (non-Javadoc)
 	 * @see com.magic.service.IService#execute(java.util.Map)
 	 */
@@ -61,6 +62,24 @@ public class LoadParamsService extends BaseService{
 		returnMap.put("returnData", json);
 		
 		return returnMap;
+	}
+	
+	/**
+	 * 
+	 * @param context
+	 * @return
+	 * @throws ExecuteServiceException
+	 */
+	public Map getSelectionDropdownService(Map context) throws ExecuteServiceException {
+		String codeIndex = (String) context.get("codeIndex");
+		String label = (String) context.get("Label");
+		String value = (String) context.get("Value");
+		Debug.logInfo("LoadParamsService actionType:" + codeIndex, module);
+		
+		JSONArray array = new JSONArray();
+		
+		
+		return null;
 	}
 
 }
