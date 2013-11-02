@@ -376,13 +376,12 @@ Ext.onReady(function(){
 		
 	var simple = new Ext.form.FormPanel({
         labelWidth: 75,
-        bodyStyle:'padding:5px 5px 0',
+        bodyStyle:'padding:5px 5px 0;height:92%',
         labelAlign:'right',
         defaultType: 'textfield',
 		buttonAlign:'left',
 		frame:true,
 		autoScroll:true,
-		height:370,
 		autoDestroy:true,
         items: [productBasicFs, productMeasuresFs],
         buttons:[{
@@ -414,10 +413,20 @@ Ext.onReady(function(){
 		        }]
     });
 	
-	simple.render('productbasicinfo');
+	//simple.render('productbasicinfo');
+//	var viewport = new Ext.Viewport({
+//        layout: 'fit',
+//        items: [
+//        	         simple
+//        ]
+//	
+//	});
 	
+
+	
+	simple.render('productbasicinfo');
 	
 });
 </script>
 
-<div id="productbasicinfo"></div>
+<div id="productbasicinfo" style="height:100%"></div>

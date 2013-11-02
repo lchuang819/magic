@@ -5,7 +5,7 @@ Ext.onReady(function(){
 	Magic.product.ProductGrid = Ext.extend(Ext.grid.GridPanel ,{
         width:420,
         height:350,
-        title:'产品列表',
+        title:'产品列表Common',
         iconCls:'icon-grid',
         trackMouseOver:false,
         disableSelection:false,

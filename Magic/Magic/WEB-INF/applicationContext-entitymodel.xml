@@ -27,5 +27,8 @@
 	<bean id="prodCatalogCategoryType" class="com.apps.catalog.entitymodel.ProdCatalogCategoryType" scope="prototype"/>
 	<bean id="productCategory" class="com.apps.catalog.entitymodel.ProductCategory" scope="prototype"/>
 	<bean id="productCategoryType" class="com.apps.catalog.entitymodel.ProductCategoryType" scope="prototype"/>
+	
+	<bean id="supplierProduct" class="com.apps.product.entitymodel.SupplierProduct" scope="prototype"/>
+	<bean id="supplierProductId" class="com.apps.product.entitymodel.SupplierProductId" scope="prototype"/>
 </beans>
 

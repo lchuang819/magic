@@ -8,6 +8,8 @@ package com.apps.product.service;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.apps.party.entitymodel.PostalAddress;
 import com.apps.product.action.ProductManagerAction;
 import com.apps.product.entitymodel.Product;
@@ -38,7 +40,7 @@ public class ProductManagerService extends BaseService{
 	 */
 	public Map createProductService(Map context) throws ExecuteServiceException {
 		Product product = (Product)context.get("product");
-		SupplierProduct supplierProduct = (SupplierProduct)context.get("supplierProduct");
+
 		KeyWords productKeyWords = (KeyWords)context.get("productKeyWords");
 		PostalAddress partyPostalAddr = (PostalAddress)context.get("partyPostalAddr");
 		
@@ -48,9 +50,7 @@ public class ProductManagerService extends BaseService{
 		}
 		
 		String productId = product.getProductId();
-		supplierProduct.getId().setProductId(productId);
-		supplierProduct.getId().setAvailableFromDate(new Date());
-		
+
 		try {
 			
 			delegator.saveEntity(product);
@@ -59,15 +59,14 @@ public class ProductManagerService extends BaseService{
 			return ServiceUtil.returnError("创建产品失败，出现数据库异常");
 		}
 		
-		Map results = this.createSupplierProductService(context);
-		if(ServiceUtil.isError(results)){
-			Debug.logError("Run createSupplierProductService error:" + ServiceUtil.getErrorMessage(results), module);
-			return results;
-		}
+//		Map results = this.createSupplierProductService(context);
+//		if(ServiceUtil.isError(results)){
+//			Debug.logError("Run createSupplierProductService error:" + ServiceUtil.getErrorMessage(results), module);
+//			return results;
+//		}
 		
 		Map returnMap = ServiceUtil.returnSuccess();
 		returnMap.put("product", product);
-		returnMap.put("supplierProduct", supplierProduct);
 		returnMap.put("productKeyWords", productKeyWords);
 		returnMap.put("partyPostalAddr", partyPostalAddr);
 		return returnMap;

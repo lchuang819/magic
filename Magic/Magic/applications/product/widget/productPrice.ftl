@@ -4,13 +4,14 @@ Ext.onReady(function(){
 	LoadProductPriceGrid = Ext.extend(Ext.grid.GridPanel, {
 		id:'LoadProductPriceGrid',
 		//width:600,
-	    height: 350,
+	    //height: 350,
 	    frame:true,
 	    //title:'价格配置列表',
 	    iconCls:'icon-grid',
 	    closable:true,
 	    autoDestroy:true,
 	    loadMask:'Loading...',
+	    bodyStyle:'padding:5px 5px 0;height:95%',
 	    //autoExpandColumn:'description',
 	    sm: new Ext.grid.RowSelectionModel({
 	        singleSelect: true

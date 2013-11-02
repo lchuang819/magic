@@ -3,8 +3,8 @@
 Ext.onReady(function(){
 	LoadProductCostsGrid = Ext.extend(Ext.grid.GridPanel, {
 		id:'LoadProductCostsGrid',
-		//width:600,
-	    height: 350,
+		autoWidth:true,
+		bodyStyle:'padding:5px 5px 0;height:95%;width:100%;',
 	    frame:true,
 	    //title:'价格配置列表',
 	    iconCls:'icon-grid',
@@ -15,6 +15,10 @@ Ext.onReady(function(){
 	    sm: new Ext.grid.RowSelectionModel({
 	        singleSelect: true
 	    }),
+	    viewConfig: {
+            forceFit:true,
+            enableRowBody:true
+	    },
 	    listeners:{
 			scope:this,
 			rowdblclick:function(cgrid, index, e){
@@ -79,7 +83,7 @@ Ext.onReady(function(){
 			});
 			
 		var colModel = [
-	            {id:'costComponentId',header: '成本组成标识', width:120, sortable: true, locked:false, dataIndex: 'costComponentId'},
+	            {id:'costComponentId',header: '成本组成标识', width:'auto', sortable: true, locked:false, dataIndex: 'costComponentId'},
 	            {header: '成本组成类型', width:120, sortable: true, dataIndex: 'costComponentTypeId'},
 				{header: '成本',width:120,  sortable: true, dataIndex: 'cost'},
 	            {header: '货币', width:120, sortable: true, dataIndex: 'costUomId'},

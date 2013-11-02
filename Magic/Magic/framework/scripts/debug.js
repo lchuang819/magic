@@ -60,6 +60,8 @@ function createConsole(){
         tools:[{
             id: 'close',
             handler: function(){
+            	util.constant.debugEnable = false;
+        		util.constant.errorEnable = false;
                 cp.destroy();
                 cp = null;
                 Ext.EventManager.removeResizeListener(handleResize);
@@ -106,10 +108,23 @@ function createConsole(){
 
 Ext.apply(Ext, {
     log : function(){
+    	if(!util.constant.debugEnable){
+    		return;
+    	}
         if(!cp){
             createConsole();
         }
         cp.logView.log.apply(cp.logView, arguments);
+    },
+    
+    loge : function(){
+    	if(!util.constant.errorEnable){
+    		return;
+    	}
+        if(!cp){
+            createConsole();
+        }
+    	cp.logView.loge.apply(cp.logView, arguments);
     },
 
     logf : function(format, arg1, arg2, etc){
@@ -234,8 +249,18 @@ Ext.debug.LogPanel = Ext.extend(Ext.Panel, {
     style:'border-width:0 1px 0 0',
 
     log : function(){
-        var markup = [  '<div style="padding:5px !important;border-bottom:1px solid #ccc;">',
-                    Ext.util.Format.htmlEncode(Array.prototype.join.call(arguments, ', ')).replace(/\n/g, '<br/>').replace(/\s/g, '&#160;'),
+        var markup = [  '<div style="padding:5px !important;border-bottom:1px solid #ccc;font:normal 12px tahoma, arial, helvetica, sans-serif;">',
+                        '['+new Date().format('Y-m-d H:i:s.u') + '] '+ Ext.util.Format.htmlEncode(Array.prototype.join.call(arguments, ', ')).replace(/\n/g, '<br/>').replace(/\s/g, '&#160;'),
+                    '</div>'].join(''),
+            bd = this.body.dom;
+
+        this.body.insertHtml('beforeend', markup);
+        bd.scrollTop = bd.scrollHeight;
+    },
+    
+    loge : function(){
+        var markup = [  '<div style="padding:5px !important;border-bottom:1px solid #ccc;font:normal 12px tahoma, arial, helvetica, sans-serif;color:red;">',
+                        '['+new Date().format('Y-m-d H:i:s.u') + '] '+ Ext.util.Format.htmlEncode(Array.prototype.join.call(arguments, ', ')).replace(/\n/g, '<br/>').replace(/\s/g, '&#160;'),
                     '</div>'].join(''),
             bd = this.body.dom;
 

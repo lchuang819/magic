@@ -28,36 +28,12 @@
 <title>Build</title>
 
 <STYLE>
-.cc
-{
-	color:white;
-	text-align:center;
-	font:normal 12px tahoma, arial, helvetica, sans-serif;
-}
-
-/* ==== Styles For The Html Log === */
-.DEBUG {
-color: #808080;
-font-size:80%;
-}
-
-.WARN {
-color: #0000ff;
-font-weight: bold;
-font-size:80%;
-}
-
-.INFO{
-color: #008000;
-font-size:80%;
-}
-
-.ERROR {
-border: 0.2em solid #ff0000;
-color: #ff0000;
-font-weight: bold;
-font-size:90%;
-}
+//.cc
+//{
+//	color:white;
+//	text-align:center;
+//	font:normal 12px tahoma, arial, helvetica, sans-serif;
+//}
 
 </STYLE>
 
@@ -80,6 +56,27 @@ Ext.onReady(function(){
             });
 		
 		tabpanel.add(welcome);
+		
+		var productDetailPanel = new Ext.Panel({
+			id:'ProductDetailPanel',
+			//title:'任务列表',
+			closable:true,
+			autoDestroy:true,
+			autoScroll:true,
+			iconCls:'icon-static',
+			autoLoad:{url:'www.baidu.com', scope:this, scripts:true,
+    			callback:function(el, success, response, options){
+					if(!success){
+						Ext.MessageBox.show({
+							title:'错误',
+							msg: '产品信息加载失败',
+							buttons: Ext.Msg.OK,
+							icon: Ext.MessageBox.ERROR
+						});
+					}
+				}
+			}
+		});
 		
 		var viewport = new Ext.Viewport({
             layout: 'border',
@@ -109,10 +106,10 @@ Ext.onReady(function(){
                 maxSize: 200,
                 collapsible: true,
                 collapsed:true,
-                title: 'South',
+                title: '任务栏',
                 margins: '0 0 0 0',
                 items:[
-                	
+                	//productDetailPanel
                 ]
             },
             tabpanel

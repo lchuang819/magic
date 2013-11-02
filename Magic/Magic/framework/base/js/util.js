@@ -3,7 +3,7 @@ Ext.app.Module=function(a){Ext.apply(this,a);Ext.app.Module.superclass.construct
 var tb = new Ext.Toolbar({
 	style:'font-family: 微软雅黑;'
 });
-var util = {constant:{appPath:'/Magic/'},MessageBox:{}};
+var util = {constant:{appPath:'/Magic/',debugEnable:true,errorEnable:true},MessageBox:{}};
 var tabpanel = desk =  new Ext.TabPanel({
             region: 'center', // a center region is ALWAYS required for border layout
             deferredRender: false,
@@ -115,24 +115,37 @@ loadjs=function(config){
 	if(config == null){
 		return;
 	}
+	Ext.log(config.path);
 	Ext.Ajax.request({
     		url:util.constant.appPath + config.path,
     		method:'GET',scope: this,
     		success: function(o){
-			//new util.MessageBox({title:'Load success',text:'Load ['+config.path+'] success!'});
-    		//alert(config.className);	
-    		//alert(o.responseText);
-			eval(o.responseText);
-			//alert(obj.text);
-			eval('var obj = new '+config.className+'();');
-    		obj.createWindow.call(obj);
-    		Ext.getBody().unmask();//remove mask
+    			//new util.MessageBox({title:'Load success',text:'Load ['+config.path+'] success!'});
+    			//alert(config.className);	
+    			//alert(o.responseText);
+    			try {
+    				eval(o.responseText);
+    				eval('var obj = new '+config.className+'();');
+    				//Ext.log('util.loadjs.className: '+config.className);
+    				if(obj.createWindow && obj.createWindow != 'function (){}'){
+    					//Ext.log('util.loadjs createWindow:' + obj.createWindow);
+    					obj.createWindow.call(obj);
+    				}else{
+    					Ext.log('util.loadjs init...');
+    					//obj.init.call(obj);
+    				}
+				} catch (e) {
+					Ext.loge('util.loadjs.exception:'+e.message);
+				}
+    			Ext.getBody().unmask();
     		},
     		failure:function(o){
-    			alert("Error:"+o.responseText);
-    			Ext.getBody().unmask();//remove mask
+    			//alert("Error:"+o.responseText);
+    			Ext.log(o.responseText);
+    			Ext.getBody().unmask();
     		}
     	});
+	//Ext.getBody().unmask();
 };
 openTab=function(item){
 	if(item == null)return;
@@ -186,7 +199,7 @@ util.MessageBox = function(config){
 };
 
 function AjaxEvalScript(options){
-//	Ext.example.msg('提示', 'AjaxEvalScript:'+options.url);
+	Ext.log('提示', 'AjaxEvalScript:'+options.url);
 	if(options.CmpId != undefined && Ext.ComponentMgr.get(options.CmpId)){
 		if('window' == options.containerType){
 			options.container.show();
