@@ -41,6 +41,11 @@
 		<action name="partyLoader" class="com.apps.party.action.PartyLoaderAction">
 			<result type="json"></result>
 		</action>
+		
+		<action name="partyListLoader" class="com.apps.party.action.PartyLoaderAction" method="executeLoadPartyList">
+			<result name="success" type="freemarker">/applications/party/widget/partyList.ftl</result>
+		</action>
+		
 		<action name="partyByLoader" class="com.apps.party.action.PartyLoaderAction" method="executeLoadPartyBy">
 			<result type="json"></result>
 		</action>

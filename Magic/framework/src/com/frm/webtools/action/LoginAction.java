@@ -200,5 +200,4 @@ public class LoginAction extends BaseAction {
 		return null;
 	}
 
-
 }

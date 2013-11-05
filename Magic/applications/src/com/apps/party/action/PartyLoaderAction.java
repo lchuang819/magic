@@ -408,4 +408,10 @@ public class PartyLoaderAction extends ActionSupport {
 		
 		return null;
 	}
+	
+	public String executeLoadPartyList() throws Exception {
+		
+		
+		return SUCCESS;
+	}
 }
