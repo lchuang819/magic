@@ -84,6 +84,7 @@ Ext.onReady(function(){
 				url:options.url,
 			    method : 'POST',
 			    waitMsg : "正在执行……",
+			    params : options.params,
 				success:function(form, action){
 					
 					Ext.MessageBox.alert('提示', '操作成功');

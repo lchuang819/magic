@@ -124,11 +124,11 @@ loadjs=function(config){
     			//alert(config.className);	
     			//alert(o.responseText);
     			try {
+    				Ext.log('util.loadjs.className: '+config.className);
     				eval(o.responseText);
     				eval('var obj = new '+config.className+'();');
-    				//Ext.log('util.loadjs.className: '+config.className);
     				if(obj.createWindow && obj.createWindow != 'function (){}'){
-    					//Ext.log('util.loadjs createWindow:' + obj.createWindow);
+    					Ext.log('util.loadjs createWindow:' + obj.createWindow);
     					obj.createWindow.call(obj);
     				}else{
     					Ext.log('util.loadjs init...');
@@ -199,7 +199,10 @@ util.MessageBox = function(config){
 };
 
 function AjaxEvalScript(options){
-	Ext.log('提示', 'AjaxEvalScript:'+options.url);
+	
+	Ext.log('[util.js][AjaxEvalScript]options.url:'+options.url);
+	Ext.log('[util.js][AjaxEvalScript]options.baseParams:'+options.baseParams);
+	
 	if(options.CmpId != undefined && Ext.ComponentMgr.get(options.CmpId)){
 		if('window' == options.containerType){
 			options.container.show();
