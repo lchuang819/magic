@@ -1,20 +1,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/ext-all.css"/>
-<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/icons.css"/>
-<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/debug.css"/>
+<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/extjs34/css/ext-all.css"/>
+<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/extjs34/css/debug.css"/>
+<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/customer/icons.css"/>
+<link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/customer/style.css"/>
+<!-- 
 <link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/ux-all.css"/>
 <link rel="stylesheet" type="text/css" href="/Magic/framework/resources/css/customer/ux.css"/>
-<!-- -->
+-->
 
 <link rel="shortcut icon" href="/Magic/framework/resources/icons/favicon.gif"/>
 
 <script type="text/javascript" src="/Magic/framework/adapter/ext/ext-base.js"></script>
-<script type="text/javascript" src="/Magic/framework/scripts/ext-all.js"></script>
-<script type="text/javascript" src="/Magic/framework/scripts/debug.js"></script>
+<script type="text/javascript" src="/Magic/framework/scripts/extjs34/ext-all-debug.js"></script>
+<script type="text/javascript" src="/Magic/framework/scripts/extjs34/debug.js"></script>
+
+<!--
 <script type="text/javascript" src="/Magic/framework/scripts/ux-all.js"></script>
 <script type="text/javascript" src="/Magic/framework/scripts/ux.js"></script>
+-->
+
 <!--
 <script type="text/javascript" src="/Magic/framework/adapter/prototype/ext-prototype-adapter-debug.js"></script>
 -->

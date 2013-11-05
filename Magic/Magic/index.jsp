@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="shortcut icon" href="framework/resources/icons/favicon.gif"/> 
-<link rel="stylesheet" type="text/css" href="./framework/resources/css/ext-all.css"/>
+<link rel="stylesheet" type="text/css" href="./framework/resources/extjs34/css/ext-all.css"/>
 
 <script type="text/javascript" src="./framework/adapter/ext/ext-base.js"></script>
-<script type="text/javascript" src="./framework/scripts/ext-all.js"></script>
+<script type="text/javascript" src="./framework/scripts/extjs34/ext-all-debug.js"></script>
 
 <script type="text/javascript" src="./framework/base/js/util.js"></script>
 <script type="text/javascript" src="./framework/webtools/js/loginUi.js"></script>

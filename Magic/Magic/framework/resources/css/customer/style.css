@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+/* ==== Styles For The Html Log === */
+.DEBUG {
+	color: #808080;
+	font: normal 12px tahoma, arial, helvetica, sans-serif;
+}
+
+.WARN {
+	color: #0000ff;
+	font-weight: bold;
+	font: normal 12px tahoma, arial, helvetica, sans-serif;
+}
+
+.INFO {
+	color: #008000;
+	font: normal 12px tahoma, arial, helvetica, sans-serif;
+}
+
+.ERROR {
+	border: 0.2em solid #ff0000;
+	color: #ff0000;
+	font-weight: bold;
+	font: normal 12px tahoma, arial, helvetica, sans-serif;
+}

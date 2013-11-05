@@ -1,5 +1,7 @@
 Ext.app.Module=function(a){Ext.apply(this,a);Ext.app.Module.superclass.constructor.call(this);this.init();};Ext.extend(Ext.app.Module,Ext.util.Observable,{launcher:null,loaded:true,menuPath:null,moduleType:null,moduleId:null,init:Ext.emptyFn,createWindow:Ext.emptyFn,handleRequest:Ext.emptyFn});
 
+Ext.BLANK_IMAGE_URL='/Magic/framework/resources/images/default/s.gif';
+
 var tb = new Ext.Toolbar({
 	style:'font-family: 微软雅黑;'
 });
@@ -8,8 +10,8 @@ var tabpanel = desk =  new Ext.TabPanel({
             region: 'center', // a center region is ALWAYS required for border layout
             deferredRender: false,
             activeTab: 0,     // first tab initially active
-            style:'font-family: 微软雅黑;',
-            plugins: new Ext.ux.TabCloseMenu()
+            style:'font-family: 微软雅黑;'
+            //plugins: new Ext.ux.TabCloseMenu()
         });
 
 createToolbar = function(modules){
@@ -371,35 +373,35 @@ function DataConnectionSubmit(options){
 };
 
 
-JavaGridFilters = Ext.extend(Ext.ux.grid.GridFilters, {
-	menuFilterText:'过滤器',
-	buildQuery:function(filters){
-		var p = {};  
-		var s = [];//临时保存所选的所有filter  
-		for(var i=0, len=filters.length; i<len; i++){  
-		    var f = filters[i]; // f = {dataIndex, data, ....};  
-		    //alert(JSON.stringify(f));  
-		    if(f.data['comparison']!=null) {  
-		        if(!p[f.field]) {  
-		            p[ f.field ] = '';  
-		        }  
-		        p[f.field] += f.data['comparison'] + '@' + f.data['value'] +',';  
-		    }else {  
-		        p[f.field] = f.data['value'];  
-		    }  
-		    s.push(f.field);  
-		}  
-		p["gridFilterList"] = s.join(",");  
-		return p;
-
-	},
-	cleanParams : function (p) {  
-		var s = p["gridFilterList"] || "" ;  
-		var k = s.split(",");  
-		for(var i=0, len=k.length; i<len; i++){  
-			var f = k[i];  
-			delete p[f];  
-		}  
-	}
-
-});
+//JavaGridFilters = Ext.extend(Ext.ux.grid.GridFilters, {
+//	menuFilterText:'过滤器',
+//	buildQuery:function(filters){
+//		var p = {};  
+//		var s = [];//临时保存所选的所有filter  
+//		for(var i=0, len=filters.length; i<len; i++){  
+//		    var f = filters[i]; // f = {dataIndex, data, ....};  
+//		    //alert(JSON.stringify(f));  
+//		    if(f.data['comparison']!=null) {  
+//		        if(!p[f.field]) {  
+//		            p[ f.field ] = '';  
+//		        }  
+//		        p[f.field] += f.data['comparison'] + '@' + f.data['value'] +',';  
+//		    }else {  
+//		        p[f.field] = f.data['value'];  
+//		    }  
+//		    s.push(f.field);  
+//		}  
+//		p["gridFilterList"] = s.join(",");  
+//		return p;
+//
+//	},
+//	cleanParams : function (p) {  
+//		var s = p["gridFilterList"] || "" ;  
+//		var k = s.split(",");  
+//		for(var i=0, len=k.length; i<len; i++){  
+//			var f = k[i];  
+//			delete p[f];  
+//		}  
+//	}
+//
+//});
