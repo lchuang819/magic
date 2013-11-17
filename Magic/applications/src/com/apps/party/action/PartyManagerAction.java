@@ -24,8 +24,8 @@ import com.apps.party.entitymodel.Party;
 import com.apps.party.entitymodel.PartyGroup;
 import com.apps.party.entitymodel.PartyRelationship;
 import com.apps.party.entitymodel.PartyRelationshipId;
+import com.apps.party.entitymodel.PartyRole;
 import com.apps.party.entitymodel.PartyRoleId;
-import com.apps.party.entitymodel.PartyType;
 import com.apps.party.entitymodel.Person;
 import com.apps.party.entitymodel.PostalAddress;
 import com.apps.party.entitymodel.TelecomNumber;
@@ -33,7 +33,7 @@ import com.apps.party.service.ContactMechService;
 import com.apps.party.service.PartyManagerService;
 import com.apps.party.service.PartyRelationshipService;
 import com.apps.party.service.PostalAddressService;
-import com.apps.party.service.RoleService;
+import com.apps.party.service.PartyRoleService;
 import com.apps.party.service.TelecomNumberService;
 import com.magic.util.CommonUtil;
 import com.magic.util.Debug;
@@ -51,12 +51,23 @@ public class PartyManagerAction extends ActionSupport {
 	@Autowired
 	public Person person;
 	
+	@Autowired
+	@Qualifier("partyRoleId")
+	private PartyRoleId partyRoleId;
+	
+	public PartyRoleId getPartyRoleId() {
+		return partyRoleId;
+	}
+
+	public void setPartyRoleId(PartyRoleId partyRoleId) {
+		this.partyRoleId = partyRoleId;
+	}
+
 	private Party party;
 	private PartyGroup partyGroup;
 	private PostalAddress postalAddress;
 	private TelecomNumber telecomNumber;
 	private ContactMech contactMech;
-	private PartyRoleId partyRoleId;
 	private PartyRelationshipId partyRelationshipId;
 	private PartyRelationship partyRelationship;
 	
@@ -64,7 +75,7 @@ public class PartyManagerAction extends ActionSupport {
 	private PartyRelationshipService partyRelationshipService;
 	
 	@Autowired
-	private RoleService roleService;
+	private PartyRoleService roleService;
 	
 	@Qualifier("postalAddressService")
 	private PostalAddressService postalAddressService;
@@ -104,20 +115,6 @@ public class PartyManagerAction extends ActionSupport {
 	 */
 	public void setPartyRelationship(PartyRelationship partyRelationship) {
 		this.partyRelationship = partyRelationship;
-	}
-
-	/**
-	 * @return the partyRoleId
-	 */
-	public PartyRoleId getPartyRoleId() {
-		return partyRoleId;
-	}
-
-	/**
-	 * @param partyRoleId the partyRoleId to set
-	 */
-	public void setPartyRoleId(PartyRoleId partyRoleId) {
-		this.partyRoleId = partyRoleId;
 	}
 
 	/**
@@ -255,14 +252,15 @@ public class PartyManagerAction extends ActionSupport {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		String actionType = request.getParameter("actionType");
 		String partyType = request.getParameter("partyType");
+		String roleTypeId = request.getParameter("partyRoleId.roleTypeId");
 		Debug.logInfo("actionType:"+actionType, module);
-		
 		Map<String, Object> context = new HashMap<String, Object>();
 		context.put("person", person);
 		context.put("partyType", partyType);
 		context.put("postalAddress", postalAddress);
 		context.put("telecomNumber", telecomNumber);
 		context.put("contactMech", contactMech);
+		context.put("partyRoleId", partyRoleId);
 		
 		Map results = null;
 		try {

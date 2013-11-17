@@ -22,11 +22,11 @@ Ext.onReady(function(){
 		initComponent: function(){
 			this.toolbar = new Ext.Toolbar({
 				items:[{
-						text:'创建新的',
-						iconCls:'icon-add',
+						text:'编辑选中记录',
+						iconCls:'icon-edit',
 						scope: this,
 						id : '${RequestParameters["roleTypeId"]}',
-						handler:this.createNewCatalog
+						handler:this.editParty
 					},{
 						text:'删除记录',
 						iconCls:'icon-delete',
@@ -55,8 +55,7 @@ Ext.onReady(function(){
 		        url: 'partyLoader.action',
 		        baseParams:{actionType : 'LoadPartyByRoleType', roleTypeId : '${RequestParameters["roleTypeId"]}'},
 		        fields: [
-		            'partyId', 'personalTitle', 'firstName', 'lastName', 'partyTypeId', 'partyTypeDescription', 'comments'
-		            // 会员标识 		用户登录 		名字		类型 
+		            'partyId', 'personalTitle', 'lastName', 'firstName', 'partyTypeId', 'partyTypeDescription', 'comments'
 		        ]
 		    });
 			
@@ -64,8 +63,8 @@ Ext.onReady(function(){
 			var colModel = [
 	            {id:'partyId',header: '雇员ID', width:120, sortable: true, locked:false, dataIndex: 'partyId'},
 	            {header: '雇员称谓', width:120, sortable: true, dataIndex: 'personalTitle'},
-				{header: '名字',width:120,  sortable: true, dataIndex: 'firstName'},
 	            {header: '姓氏', width:120, sortable: true, dataIndex: 'lastName'},
+				{header: '名字',width:120,  sortable: true, dataIndex: 'firstName'},
 	            {header: '成员类别', width:120, sortable: true, dataIndex: 'partyTypeId'},
 	            {header: '成员类别描述',width:120,  sortable: true, dataIndex: 'partyTypeDescription'},
 	            {header: '备注', width:120, sortable: true, dataIndex: 'comments'}
@@ -73,6 +72,8 @@ Ext.onReady(function(){
 	        ];
 	                    
 			PartyListGrid.superclass.constructor.call(this, {store:store, columns:colModel});
+			
+
 		},
 		createNewCatalog : function(p){
 			var ds = this.store;		
@@ -106,12 +107,34 @@ Ext.onReady(function(){
 			Ext.MessageBox.confirm('删除', '确认删除该记录?', function(btn){
 				if('yes' == btn){
 					DataConnectionSubmit({
-						url:'productCostsManager.action?actionType=DeleteProductCategory',
+						url:'partyManager.action?actionType=DeleteProductCategory',
 						params:{'productCategory.productCategoryId':rec.get('productCategoryId')},
 						store:ds,
 						record:rec
 					});
 				}
+			});
+		},
+		editParty : function(record){
+			var ds = this.store;		
+			var win = new Ext.CommonSubmitWindow({
+				title:'编辑选中的',
+				url:'productCostsManager.action?actionType=UpdatePerson',
+				formId:'PartyUpdateForm',
+				store:ds,
+				hideBtn:true
+			});
+		    
+		    Ext.log('[partyList.ftl][configComponent] roleType: ' + record.id);
+		    
+			AjaxEvalScript({
+				container:win, 
+				containerType:'window', 
+				url:'applications/party/js/PartyUpdateForm.js', 
+				varName:'PartyUpdateForm',
+				CmpId:'PartyUpdateForm',
+				baseParams : {roleType : record.id},
+				callCfg:true
 			});
 		}
 	

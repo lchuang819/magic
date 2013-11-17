@@ -18,7 +18,7 @@ import com.magic.util.UtilValidate;
  * @author lchuang
  * @2011-11-28
  */
-public class RoleService extends BaseService {
+public class PartyRoleService extends BaseService {
 
 	/**
 	 * 创建PartyRole
@@ -28,10 +28,12 @@ public class RoleService extends BaseService {
 	 */
 	public Map createPartyRoleService(Map context) throws ExecuteServiceException {
 		PartyRoleId id = (PartyRoleId) context.get("partyRoleId");
+		String partyId = (String) context.get("partyId");
 		if(UtilValidate.isEmpty(id)){
 			throw new ExecuteServiceException("输入的参数为空");
 		}
 		
+		id.setPartyId(partyId);
 		PartyRole role = new PartyRole(id);
 		
 		delegator.saveEntity(role);

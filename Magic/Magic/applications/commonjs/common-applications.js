@@ -99,6 +99,12 @@ Ext.onReady(function() {
 				value : partyRecord.get('lastNameLocal'),
 				allowBlank : false
 			});
+			
+			var partyRole = new Ext.form.Hidden({
+				hidden : false,
+				name : 'partyRoleId.roleTypeId',
+				value : config.partyRole,
+			});
 
 			// var roleTypeStore = new Ext.data.JsonStore({
 			// //autoLoad:true,
@@ -208,6 +214,10 @@ Ext.onReady(function() {
 					items : [ lastNameTf, firstNameTf, lastNameLocalTf, firstNameLocalTf ]
 				};
 				productBasicFs.add(nameFieldGroup);
+			}
+			
+			if(config.partyRole == 'EMPLOYEE'){
+				productBasicFs.add(partyRole);
 			}
 
 			//productBasicFs.add(comments);
@@ -467,7 +477,6 @@ Ext.onReady(function() {
 				// postalAddressFs = postalAddressGridFs;
 			}
 			
-
 			var items;
 			if (config.loadParty) {
 				items = [ productBasicFs, contactPostTeleGridFs, postalAddressGrid ];
@@ -475,38 +484,12 @@ Ext.onReady(function() {
 				items = [ productBasicFs, postalAddressFs, contactMethodFs, commentsFS ];
 			}
 
-			var opButtons = [ {
-				text : '保存',
-				type : 'submit',
-				handler : function() {
-					PartyForm.form.submit({
-						url : 'partyManager.action?actionType=' + config.actionType,
-						method : 'POST',
-						success : function(form, action) {
-							Ext.MessageBox.alert('提示', '操作成功');
-						},
-						failure : function(form, action) {
-							if (action.failureType == 'connect') {
-								alert('连接服务器失败，请稍后再试');
-							} else if (action.failureType == 'client') {
-								alert('提交信息错误');
-							}
-						}
-					});
-				}
-			}, {
-				text : '重置',
-				type : 'reset',
-				handler : function() {
-					PartyForm.form.reset();
-				}
-			} ];
-
 			PartyForm.superclass.constructor.call(this, {
 				items : items
 			});
 		}
-	});// end partyForm
+	});
+	// end partyForm
 
 	/**
 	 * 加载邮政地址列表

@@ -5,6 +5,7 @@
  */
 package com.apps.party.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 
 import com.apps.party.constant.PartyConstant;
 import com.apps.party.entitymodel.Party;
@@ -205,23 +207,53 @@ public class PartyLoaderService extends BaseService{
 			Debug.logInfo("partyRoles partyId:"+partyId, module);
 				
 			Person person = null;
+			PartyGroup partyGroup = null;
+			Party party = null;
+			
 			try {
-				person = (Person) delegator.findById(Person.class, partyId);
+				party = (Party) delegator.findById(Party.class, partyId);
+				
+				String partyType = null;
+				
+				if(party != null){
+					partyType = party.getPartyTypeId();
+				}
+				
+				if(PartyConstant.PARTY_TYPE_PERSON.equals(partyType)){
+					
+					person = (Person) delegator.findById(Person.class, partyId);
+					
+					if(person == null){
+						continue;
+					}
+					
+					String partyName = person.getFirstName();
+					
+					Map personMap = BeanUtils.describe(person);
+					
+					JSONObject jsonData = JSONObject.fromObject(personMap);
+					jsonData.put("roleTypeId", role.getId().getRoleTypeId());
+					array.add(jsonData);
+					
+				}else if(PartyConstant.PARTY_TYPE_PARTY_GROUP.equals(partyType)){
+					
+					partyGroup = (PartyGroup) delegator.findById(PartyGroup.class, partyId);
+					
+				}
 			} catch (GenericEntityException e) {
 				Debug.logError(e, module);
 				throw new ExecuteServiceException("查询人员失败");
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
-			if(person == null){
-				continue;
-			}
-			String partyName = person.getFirstName();
-			
-			JSONObject jsonData = new JSONObject();
-			jsonData.put("partyName", partyName);
-			jsonData.put("partyId", partyId);
-			jsonData.put("roleTypeId", role.getId().getRoleTypeId());
-			array.add(jsonData);
 			
 		}
 		

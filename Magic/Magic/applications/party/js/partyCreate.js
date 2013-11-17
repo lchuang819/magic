@@ -47,7 +47,8 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 					text : '创建雇员',
 					leaf : true,
 					iconCls : 'icon-user-add',
-					partyType : 'PERSON'
+					partyType : 'PERSON',
+					partyRole : 'EMPLOYEE'
 				} ]
 			}),
 			rootVisible : false,
@@ -89,9 +90,11 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 	},
 	openItem : function(node, path) {
 		Ext.log('Create Party and Type is:' + node.attributes.partyType);
+		Ext.log('Create Party and Type is:' + node.attributes.partyRole);
 		var newcustomerPanel = new PartyForm({
 			actionType : node.id,
 			partyType : node.attributes.partyType,
+			partyRole : node.attributes.partyRole,
 			id : node.id,
 			title : node.text,
 			loadParty : false,

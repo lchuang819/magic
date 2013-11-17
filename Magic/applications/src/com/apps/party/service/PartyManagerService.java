@@ -60,6 +60,10 @@ public class PartyManagerService extends BaseService {
 	@Qualifier("telecomNumberService")
 	private TelecomNumberService telecomNumberService;
 	
+	@Autowired
+	@Qualifier("partyRoleService")
+	private PartyRoleService partyRoleService;
+	
 	/**
 	 * @return the contactMechService
 	 */
@@ -281,6 +285,7 @@ public class PartyManagerService extends BaseService {
 		String personId = newPerson.getPartyId();
 		if(StringUtils.isEmpty(personId)){
 			newPerson.setPartyId(partyId);
+			context.put("partyId", partyId);
 		}
 		
 		//创建Person
@@ -289,6 +294,11 @@ public class PartyManagerService extends BaseService {
 		} catch (GenericEntityException e) {
 			Debug.logError(e, module);
 			return ServiceUtil.returnError("创建人员失败");
+		}
+		
+		Map roleResult = partyRoleService.createPartyRoleService(context);
+		if(ServiceUtil.isError(roleResult)){
+			return roleResult;
 		}
 		
 		Map postalInput = new HashMap();

@@ -14,6 +14,9 @@
 	<bean id="logLevel" class="com.frm.sysmanage.model.LogLevel" scope="prototype"/>
     
 	<bean id="party" class="com.apps.party.entitymodel.Party" scope="prototype"/>
+	<bean id="partyRole" class="com.apps.party.entitymodel.PartyRole" scope="prototype"/>
+	<bean id="partyRoleId" class="com.apps.party.entitymodel.PartyRoleId" scope="prototype"/>
+	
 	<bean id="person" class="com.apps.party.entitymodel.Person" scope="prototype"/>
 	<bean id="postalAddress" class="com.apps.party.entitymodel.PostalAddress" scope="prototype"/>
 	<bean id="telecomNumber" class="com.apps.party.entitymodel.TelecomNumber" scope="prototype"/>

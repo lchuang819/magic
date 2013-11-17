@@ -204,7 +204,7 @@
 	<bean id="postalAddressService" class="com.apps.party.service.PostalAddressService"/>
 	<bean id="telecomNumberService" class="com.apps.party.service.TelecomNumberService"/>
 	<bean id="geoService" class="com.apps.party.service.GeoService"/>
-	<bean id="roleService" class="com.apps.party.service.RoleService"/>
+	<bean id="partyRoleService" class="com.apps.party.service.PartyRoleService"/>
 	<bean id="partyRelationshipService" class="com.apps.party.service.PartyRelationshipService"/>
 	
 	<!-- Applications Catalog -->

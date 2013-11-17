@@ -25,8 +25,7 @@ var partyList = Ext.extend(Ext.app.Module, {
 					id : 'employeeDetails',
 					text : '雇员信息',
 					leaf : true,
-					iconCls:'icon-grid',
-					path:'applications/party/widget/newPartyGroup.ftl'
+					iconCls:'icon-grid'
 				}, {
 					id : 'customerDetails',
 					text : '客户信息',
