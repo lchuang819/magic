@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +48,11 @@ public class PartyManagerAction extends ActionSupport {
 
 	public static final String module = PartyLoaderAction.class.getName();
 	
-	private Person person;
+	@Autowired
+	public Person person;
+	
 	private Party party;
 	private PartyGroup partyGroup;
-	private PartyType partyType;
 	private PostalAddress postalAddress;
 	private TelecomNumber telecomNumber;
 	private ContactMech contactMech;
@@ -216,34 +219,6 @@ public class PartyManagerAction extends ActionSupport {
 	}
 
 	/**
-	 * @return the partyType
-	 */
-	public PartyType getPartyType() {
-		return partyType;
-	}
-
-	/**
-	 * @param partyType the partyType to set
-	 */
-	public void setPartyType(PartyType partyType) {
-		this.partyType = partyType;
-	}
-
-	/**
-	 * @return the person
-	 */
-	public Person getPerson() {
-		return person;
-	}
-
-	/**
-	 * @param person the person to set
-	 */
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
-	/**
 	 * @return the party
 	 */
 	public Party getParty() {
@@ -279,6 +254,7 @@ public class PartyManagerAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpServletResponse response = ServletActionContext.getResponse();
 		String actionType = request.getParameter("actionType");
+		String partyType = request.getParameter("partyType");
 		Debug.logInfo("actionType:"+actionType, module);
 		
 		Map<String, Object> context = new HashMap<String, Object>();
@@ -350,7 +326,9 @@ public class PartyManagerAction extends ActionSupport {
 			return null;
 		}
 		
-		CommonUtil.outSuccessJson(response, "操作成功");
+		JSONObject responseData = JSONObject.fromObject(results);
+		Debug.logInfo("Response Data:" + responseData, module);
+		CommonUtil.outSuccessJson(response, "操作成功", responseData);
 		return null;
 	}
 	

@@ -22,9 +22,14 @@ public class CommonUtil {
 	}
 	
 	public static void outSuccessJson(HttpServletResponse response, String msg) throws IOException{
+		outSuccessJson(response, msg, null);
+	}
+	
+	public static void outSuccessJson(HttpServletResponse response, String msg, JSONObject data) throws IOException {
 		JSONObject json = new JSONObject();
 		json.put("msg", msg);
 		json.put("success", true);
+		json.put("ResponseBody", data);
 		outJson(response, json);
 	}
 	

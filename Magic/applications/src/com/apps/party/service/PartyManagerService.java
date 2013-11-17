@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -242,6 +243,8 @@ public class PartyManagerService extends BaseService {
 		ContactMech contactMech = (ContactMech) context.get("contactMech");
 		UserLogin userLogin = (UserLogin) context.get("userLogin");
 		
+		String partyType = (String) context.get("partyType");
+		
 		if(UtilValidate.isEmpty(newPerson)){
 			Debug.logError("Required input parameters [person]", module);
 			return ServiceUtil.returnError("无法创建人员，缺少必要的参数");
@@ -275,6 +278,10 @@ public class PartyManagerService extends BaseService {
 		
 		Debug.logInfo("Start save contactMech", module);
 		
+		String personId = newPerson.getPartyId();
+		if(StringUtils.isEmpty(personId)){
+			newPerson.setPartyId(partyId);
+		}
 		
 		//创建Person
 		try {
