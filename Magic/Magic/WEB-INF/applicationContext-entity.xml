@@ -9,10 +9,12 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd  
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
      
-	<!-- 璇�BeanPostProcessor 灏嗚嚜鍔ㄨ捣浣滅敤锛屽鏍囨敞 @Autowired 鐨�Bean 杩涜鑷姩娉ㄥ叆 -->
+	<!-- Bean注入 -->
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
         
 	<bean class="org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver"/>
+	
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName"
@@ -214,6 +216,8 @@
 	
 	<!-- Applications Facility -->
 	<bean id="facilityService" class="com.apps.facility.service.FacilityService"/>
+	
+<!-- 	<bean id="person" class="com.apps.party.entitymodel.Person" scope="prototype"/> -->
 	
 </beans>
 
