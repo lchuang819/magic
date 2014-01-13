@@ -2,6 +2,7 @@
 
 Ext.onReady(function(){
 	
+
 	PartyListGrid = Ext.extend(Ext.grid.GridPanel, {
 		id:'PartyListGrid',
 		autoWidth:true,
@@ -11,6 +12,7 @@ Ext.onReady(function(){
 	    closable:true,
 	    autoDestroy:true,
 	    autoScroll:true,
+	    loadMask : new Ext.LoadMask(Ext.getBody(), {msg:"加载中..."}),
 	    //autoExpandColumn:'description',
 	    sm: new Ext.grid.RowSelectionModel({
 	        singleSelect: true
@@ -60,21 +62,35 @@ Ext.onReady(function(){
 		    });
 			
 
-			var colModel = [
-	            {id:'partyId',header: '雇员ID', width:120, sortable: true, locked:false, dataIndex: 'partyId'},
-	            {header: '雇员称谓', width:120, sortable: true, dataIndex: 'personalTitle'},
-	            {header: '姓氏', width:120, sortable: true, dataIndex: 'lastName'},
-				{header: '名字',width:120,  sortable: true, dataIndex: 'firstName'},
-	            {header: '成员类别', width:120, sortable: true, dataIndex: 'partyTypeId'},
-	            {header: '成员类别描述',width:120,  sortable: true, dataIndex: 'partyTypeDescription'},
-	            {header: '备注', width:120, sortable: true, dataIndex: 'comments'}
-				
-	        ];
+	        var colModel =  new Ext.grid.ColumnModel({
+				columns:[
+					{id:'partyId', header: '雇员ID', width:50, dataIndex:'partyId'},
+		            {header: '雇员称谓', width:120, dataIndex:'personalTitle'},
+		            {header: '姓氏', width:120, dataIndex:'lastName'},
+					{header: '名字',width:120, dataIndex:'firstName'},
+		            {header: '成员类别', width:120, dataIndex:'partyTypeId'},
+		            {header: '成员类别描述',width:120, dataIndex:'partyTypeDescription'},
+		            {header: '备注', width:120, dataIndex:'comments'}
+				],
+			    defaults: {
+			        sortable: true,
+			        menuDisabled: true,
+			        width: 100
+			    }
+	        
+	        });
 	                    
-			PartyListGrid.superclass.constructor.call(this, {store:store, columns:colModel});
+			PartyListGrid.superclass.constructor.call(this, {store:store, colModel:colModel});
 			
 
 		},
+		listeners:{
+  			scope:this,
+	    	rowclick:function(sGrid, rowIndex, e){
+	    		var record = sGrid.getSelectionModel().getSelected();
+	    		
+	    	}
+	    },
 		createNewCatalog : function(p){
 			var ds = this.store;		
 			var win = new Ext.CommonSubmitWindow({
@@ -104,11 +120,13 @@ Ext.onReady(function(){
 			}
 			var ds = this.store;
 			
-			Ext.MessageBox.confirm('删除', '确认删除该记录?', function(btn){
+			var partyId = rec.get('partyId');
+			
+			Ext.MessageBox.confirm('删除', '确认删除'+partyId+'?', function(btn){
 				if('yes' == btn){
 					DataConnectionSubmit({
-						url:'partyManager.action?actionType=DeleteProductCategory',
-						params:{'productCategory.productCategoryId':rec.get('productCategoryId')},
+						url:'partyManager.action?actionType=DeleteParty',
+						params:{'party.partyId':partyId},
 						store:ds,
 						record:rec
 					});
@@ -142,6 +160,8 @@ Ext.onReady(function(){
 	
 	var grid = new PartyListGrid();
 	grid.render('employeeDetailsofPartyList');
+	
+	
 });
 
 </script>
