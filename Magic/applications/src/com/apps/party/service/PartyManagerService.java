@@ -360,4 +360,34 @@ public class PartyManagerService extends BaseService {
 		return returnMap;
 	}
 	
+	/**
+	 * 
+	 * @param context
+	 * @return
+	 * @throws ExecuteServiceException
+	 */
+	public Map deletePartyService(Map context) throws ExecuteServiceException{
+		
+		Party party = (Party) context.get("party");
+		if(party == null){
+			Debug.logInfo("Party is null", module);
+			ServiceUtil.returnError("请选择需要删除的记录");
+		}
+		
+		String partyId = party.getPartyId();
+		
+		Debug.logInfo("delete Party " + partyId, module);
+		
+		if(StringUtils.isEmpty(partyId)){
+			ServiceUtil.returnError("请选择需要删除的记录");
+		}
+		
+		Party oldParty = delegator.findById(Party.class, partyId);
+		oldParty.setStatusId(PartyConstant.PARTY_STATUS_DISABLED);
+		delegator.saveEntity(oldParty);
+		
+		Map returnMap = ServiceUtil.returnSuccess();
+		return returnMap;
+	}
+	
 }

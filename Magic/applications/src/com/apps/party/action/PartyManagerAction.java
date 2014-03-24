@@ -309,7 +309,12 @@ public class PartyManagerAction extends ActionSupport {
 				context.put("postalAddress", postalAddress);
 				results = postalAddressService.updatePartyPostalAddressService(context);
 			}else if(PartyActionType.UPDATE_PARTY_GROUP.equals(actionType)){
+				
 				Debug.logInfo("Execute UPDATE_PARTY_GROUP service.", module);
+				
+			}else if(PartyActionType.DELETE_PARTY.equals(actionType)){
+				context.put("party", party);
+				partyManagerService.deletePartyService(context);
 			}
 			
 			if(ServiceUtil.isError(results)){

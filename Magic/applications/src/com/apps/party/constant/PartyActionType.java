@@ -18,6 +18,7 @@ public interface PartyActionType {
 	public static final String UPDATE_PARTY = "UpdateParty";
 	public static final String UPDATE_PERSON = "UpdatePerson";
 	public static final String UPDATE_PARTY_GROUP = "UpdatePartyGroup";
+	public static final String DELETE_PARTY = "DeleteParty";
 	
 	public static final String CREATE_TELECOM_NUMBER = "CreateTelecomNumber";
 	public static final String UPDATE_TELECOM_NUMBER = "UpdateTelecomNumber";

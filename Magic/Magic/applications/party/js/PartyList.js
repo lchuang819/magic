@@ -83,6 +83,8 @@ var partyList = Ext.extend(Ext.app.Module, {
 			
 			Ext.log('[PartyList:openItem] init employeeDetails');
 			
+			Ext.getBody().mask('加载中...');
+			
 			var employeeDetailsPanel = new Ext.Panel({
 				id : 'employeeDetails',
 				title : '雇员列表',
@@ -90,9 +92,9 @@ var partyList = Ext.extend(Ext.app.Module, {
 				closable : true,
 				autoDestroy : true,
 				autoScroll : true,
-				iconCls : 'icon-static',
+				iconCls : 'icon-grid',
 				autoLoad : {
-					url : util.constant.appPath + '/applications/party/widget/partyList.ftl', 
+					url : util.constant.appPath + '/applications/party/widget/employeeList.ftl', 
 					params : {roleTypeId : 'EMPLOYEE'},
 					scope : this, 
 					scripts : true,
@@ -104,7 +106,7 @@ var partyList = Ext.extend(Ext.app.Module, {
     							msg: '产品信息加载失败',
     							buttons: Ext.Msg.OK,
     							icon: Ext.MessageBox.ERROR
-    						});
+    						}); 
     					}
     				}
     			}
@@ -112,6 +114,81 @@ var partyList = Ext.extend(Ext.app.Module, {
 			
 			this.centerPanel.add(employeeDetailsPanel);
 			this.centerPanel.activate(employeeDetailsPanel);
+			
+			Ext.getBody().unmask();
+			
+		}else if(id == 'customerDetails'){
+			Ext.log('[PartyList:openItem] init customerDetails');
+			
+			Ext.getBody().mask('加载中...');
+			
+			var customerDetailsPanel = new Ext.Panel({
+				id : 'customerDetails',
+				title : '客戶列表',
+				frame : true,
+				closable : true,
+				autoDestroy : true,
+				autoScroll : true,
+				iconCls : 'icon-grid',
+				autoLoad : {
+					url : util.constant.appPath + '/applications/party/widget/customerList.ftl', 
+					params : {roleTypeId : 'CUSTOMER'},
+					scope : this, 
+					scripts : true,
+        			callback:function(el, success, response, options){
+        				Ext.log('[PartyList :openItem :callback ] success=' + success);
+    					if(!success){
+    						Ext.MessageBox.show({
+    							title:'错误',
+    							msg: '产品信息加载失败',
+    							buttons: Ext.Msg.OK,
+    							icon: Ext.MessageBox.ERROR
+    						}); 
+    					}
+    				}
+    			}
+			});
+			
+			this.centerPanel.add(customerDetailsPanel);
+			this.centerPanel.activate(customerDetailsPanel);
+			
+			Ext.getBody().unmask();
+		}else if(id == 'supplierDetails'){
+			Ext.log('[PartyList:openItem] init supplierDetails');
+			
+			Ext.getBody().mask('加载中...');
+			
+			var supplierDetailsPanel = new Ext.Panel({
+				id : 'supplierDetails',
+				title : '客戶列表',
+				frame : true,
+				closable : true,
+				autoDestroy : true,
+				autoScroll : true,
+				iconCls : 'icon-grid',
+				autoLoad : {
+					url : util.constant.appPath + '/applications/party/widget/supplierList.ftl', 
+					params : {roleTypeId : 'SUPPLIER'},
+					scope : this, 
+					scripts : true,
+        			callback:function(el, success, response, options){
+        				Ext.log('[PartyList :openItem :callback ] success=' + success);
+    					if(!success){
+    						Ext.MessageBox.show({
+    							title:'错误',
+    							msg: '产品信息加载失败',
+    							buttons: Ext.Msg.OK,
+    							icon: Ext.MessageBox.ERROR
+    						}); 
+    					}
+    				}
+    			}
+			});
+			
+			this.centerPanel.add(supplierDetailsPanel);
+			this.centerPanel.activate(supplierDetailsPanel);
+			
+			Ext.getBody().unmask();
 		}
 	}
 });

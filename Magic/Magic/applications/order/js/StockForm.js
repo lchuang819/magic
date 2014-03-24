@@ -19,9 +19,26 @@ StockForm = Ext.extend(Ext.magic.MagicForm, {
 			allowBlank:false
 		});
 		
-		var supplierCbx = new Magic.party.PartyComboBox({
+		var store = new Ext.data.JsonStore({
+	        root: 'dataset',
+	        totalProperty: 'totalCount',
+	        idProperty: 'partyId',
+	        autoDestroy: true,
+	        remoteSort: true,
+	        autoLoad:true,
+	        url: 'partyLoader.action',
+	        baseParams:{actionType : 'LoadPartyByRoleType', roleTypeId : 'SUPPLIER'},
+	        fields: [
+	            'partyId', 'personalTitle', 'lastName', 'firstName', 'partyTypeId', 'partyTypeDescription', 'comments'
+	        ]
+	    });
+		
+		var supplierCbx = new Ext.form.ComboBox({
 			fieldLabel:'供应商',
-			roleTypeId:'SUPPLIER'
+			store:store,
+			valueField:'partyId',
+			displayField:'lastName',
+			mode:'local'
 		});
 	
 		var passBy = new Magic.party.PartyComboBox({

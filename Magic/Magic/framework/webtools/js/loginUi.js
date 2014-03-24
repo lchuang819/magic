@@ -1,13 +1,13 @@
 Ext.onReady(function() {
 
 	var form = new Ext.form.FormPanel( {
-		labelWidth : 85, // label settings here cascade unless overridden
+		labelWidth : 75, // label settings here cascade unless overridden
 		frame : true,
 		title:'登陆',
 		bodyStyle : 'padding:5px 5px 0',
-		width : 350,
+		width : 370,
 		defaults : {
-			width : 240
+			width : 230
 		},
 		defaultType : 'textfield',
 		items : [{
@@ -17,7 +17,8 @@ Ext.onReady(function() {
 			allowBlank:false,
 			emptyText:'请输入用户名',   
             blankText:'用户名不能为空',
-            value:'admin'
+            value:'admin',
+            msgTarget:'side'
 		}, {
 			fieldLabel : '密码',
 			name : 'user.currentPassword',
@@ -25,7 +26,8 @@ Ext.onReady(function() {
 			inputType : 'password',
 			allowBlank:false,
 	        blankText:'密码不能为空',
-	        value:'admin'
+	        value:'admin',
+	        msgTarget:'side'
 		},{
             xtype:          'combo',
             mode:           'local',

@@ -23,13 +23,17 @@ Ext.onReady(function(){
 	    },
 		initComponent: function(){
 			this.toolbar = new Ext.Toolbar({
-				items:[{
+				items:[
+					'-',
+					{
 						text:'编辑选中记录',
 						iconCls:'icon-edit',
 						scope: this,
 						id : '${RequestParameters["roleTypeId"]}',
 						handler:this.editParty
-					},{
+					},
+					'-',
+					{
 						text:'删除记录',
 						iconCls:'icon-delete',
 						scope: this,
@@ -37,7 +41,7 @@ Ext.onReady(function(){
 					},
 					'-',
 					{
-						text:'双击编辑数据',
+						text:'',
 						xtype:'label'
 					}]
 			});

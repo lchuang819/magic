@@ -8,7 +8,7 @@ Ext.onReady(function() {
 	var globalPartyId = '';
 	// ======== 在新建成员 客户 成员管理中使用的PartyForm ==========/
 	PartyForm = Ext.extend(Ext.form.FormPanel, {
-		id : 'PartyForm',
+		//id : 'PartyForm',
 		iconCls : 'icon-plugin',
 		labelWidth : 75,
 		title : '',
@@ -24,7 +24,7 @@ Ext.onReady(function() {
 			PartyForm.superclass.initComponent.call(this);
 		},
 		constructor : function(config) {
-			this.id = config.id;
+			//this.id = config.id;
 			this.title = config.title;
 			this.buttons = config.buttons;
 
@@ -89,7 +89,9 @@ Ext.onReady(function() {
 				name : 'person.firstNameLocal',
 				width : 160,
 				value : partyRecord.get('firstName'),
-				allowBlank : false
+				allowBlank : false,
+				regex : /^[a-zA-Z0-9]+$/,
+				regexText : '仅能输入大小写字母与数字'
 			});
 
 			var lastNameLocalTf = new Ext.form.TextField({
@@ -97,7 +99,9 @@ Ext.onReady(function() {
 				name : 'person.lastNameLocal',
 				width : 160,
 				value : partyRecord.get('lastNameLocal'),
-				allowBlank : false
+				allowBlank : false,
+				regex : /^[a-zA-Z0-9]+$/,
+				regexText : '仅能输入大小写字母与数字'
 			});
 			
 			var partyRole = new Ext.form.Hidden({
@@ -216,7 +220,7 @@ Ext.onReady(function() {
 				productBasicFs.add(nameFieldGroup);
 			}
 			
-			if(config.partyRole == 'EMPLOYEE'){
+			if(true){
 				productBasicFs.add(partyRole);
 			}
 

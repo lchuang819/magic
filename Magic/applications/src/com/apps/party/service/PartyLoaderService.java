@@ -15,6 +15,7 @@ import net.sf.json.JSONObject;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.util.CollectionUtils;
 
 import com.apps.party.constant.PartyConstant;
 import com.apps.party.entitymodel.Party;
@@ -211,7 +212,17 @@ public class PartyLoaderService extends BaseService{
 			Party party = null;
 			
 			try {
-				party = (Party) delegator.findById(Party.class, partyId);
+//				party = (Party) delegator.findById(Party.class, partyId);
+				Map queryMap = new HashMap();
+				queryMap.put("partyId", partyId);
+				queryMap.put("statusId", PartyConstant.PARTY_STATUS_ENABLED);
+				
+				List<Party> parties = delegator.findByCondition(Party.class, queryMap);
+				if(CollectionUtils.isEmpty(parties)){
+					continue;
+				}
+				
+				party = parties.get(0);
 				
 				String partyType = null;
 				
@@ -238,6 +249,14 @@ public class PartyLoaderService extends BaseService{
 				}else if(PartyConstant.PARTY_TYPE_PARTY_GROUP.equals(partyType)){
 					
 					partyGroup = (PartyGroup) delegator.findById(PartyGroup.class, partyId);
+					
+				}else if(PartyConstant.PARTY_TYPE_CORPORATION.equals(partyType)){
+					partyGroup = (PartyGroup) delegator.findById(PartyGroup.class, partyId);
+					
+					Map personMap = BeanUtils.describe(partyGroup);
+					JSONObject jsonData = JSONObject.fromObject(personMap);
+					jsonData.put("roleTypeId", role.getId().getRoleTypeId());
+					array.add(jsonData);
 					
 				}
 			} catch (GenericEntityException e) {

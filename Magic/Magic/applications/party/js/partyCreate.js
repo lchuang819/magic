@@ -23,25 +23,29 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 					text : '创建供应商(企业)',
 					leaf : true,
 					iconCls : 'icon-user_biz',
-					partyType : 'CORPORATION'
+					partyType : 'CORPORATION',
+					partyRole : 'SUPPLIER'
 				}, {
 					id : 'SUPPLIER_PERSON',
 					text : '创建供应商(个人)',
 					leaf : true,
 					iconCls : 'icon-user-gray',
-					partyType : 'PERSON'
+					partyType : 'PERSON',
+					partyRole : 'SUPPLIER'
 				}, {
 					id : 'CUSTOMER_CORPORATION',
 					text : '创建客户(企业)',
 					leaf : true,
 					iconCls : 'icon-user_biz',
-					partyType : 'CORPORATION'
+					partyType : 'CORPORATION',
+					partyRole : 'CUSTOMER'
 				}, {
 					id : 'CUSTOMER_PERSON',
 					text : '创建客户(个人)',
 					leaf : true,
 					iconCls : 'icon-user-gray',
-					partyType : 'PERSON'
+					partyType : 'PERSON',
+					partyRole : 'CUSTOMER'
 				}, {
 					id : 'EMPLOYEE',
 					text : '创建雇员',
@@ -91,7 +95,7 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 	openItem : function(node, path) {
 		Ext.log('Create Party and Type is:' + node.attributes.partyType);
 		Ext.log('Create Party and Type is:' + node.attributes.partyRole);
-		var newcustomerPanel = new PartyForm({
+		var newCustomerPanel = new PartyForm({
 			actionType : node.id,
 			partyType : node.attributes.partyType,
 			partyRole : node.attributes.partyRole,
@@ -102,7 +106,7 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 				text : '保存',
 				type : 'submit',
 				handler : function() {
-					newcustomerPanel.form.submit({
+					newCustomerPanel.form.submit({
 						url : 'partyManager.action',
 						method : 'POST',
 						waitMsg : "正在创建……",
@@ -114,7 +118,7 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 							Ext.log('==============successfully===============');
 							var s = Ext.util.JSON.encode(action.result.ResponseBody);
 							var partyId = action.result.ResponseBody.party.partyId;
-							var c = newcustomerPanel.find('id', 'partyId');
+							var c = newCustomerPanel.find('id', 'partyId');
 							if(c.length > 0 && c[0]){
 								c[0].setText(partyId);
 							}
@@ -123,6 +127,9 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 						},
 						failure : function(form, action) {
 							var errorMsg;
+							
+							var s = Ext.util.JSON.encode(action);
+							Ext.log('==============Error===============:' + s);
 							if (action.failureType == 'connect') {
 								errorMsg = '连接服务器失败，请稍后再试!';
 							} else if (action.failureType == 'client') {
@@ -144,13 +151,13 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 				text : '重置',
 				type : 'reset',
 				handler : function() {
-					newcustomerPanel.form.reset();
+					newCustomerPanel.form.reset();
 				}
 			} ]
 		});
 
-		this.centerPanel.add(newcustomerPanel);
-		this.centerPanel.activate(newcustomerPanel);
+		this.centerPanel.add(newCustomerPanel);
+		this.centerPanel.activate(newCustomerPanel);
 		
 	}
 });
