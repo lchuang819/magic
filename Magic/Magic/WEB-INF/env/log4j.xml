@@ -172,6 +172,11 @@
         <priority value="debug"/>
         <appender-ref ref="async"/>
     </category>
+    
+    <category name="org.springframework">
+        <priority value="debug"/>
+        <appender-ref ref="async"/>
+    </category>
 
     <!-- root logger -->
     <root>

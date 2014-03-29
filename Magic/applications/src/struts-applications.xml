@@ -124,4 +124,24 @@
 		</action>
 		
 	</package>
+	
+	<package name="catalog" extends="json-default" namespace="/">
+		<action name="GlAccountAction" class="com.apps.accounting.action.GlAccountAction">
+			<result type="json"></result>
+			<exception-mapping result="exception" exception="Exception"></exception-mapping>
+			<result name="exception" type="json">
+				<param name="fuck">fuckexception</param>
+			</result>
+		</action>
+		<action name="catalogAction" class="com.apps.catalog.action.CatalogAction">
+			<result type="json"></result>
+			<exception-mapping result="exception" exception="Exception"></exception-mapping>
+			<result name="exception" type="json">
+				<param name="fuck">fuckexception</param>
+			</result>
+		</action>
+		
+	</package>
+	
+	
 </struts>

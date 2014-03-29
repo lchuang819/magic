@@ -1,9 +1,15 @@
 var partyCreate = Ext.extend(Ext.app.Module, {
 	moduleType : '',
 	moduleId : 'partyCreate',
-	text : '创建新成员或组织',
+	text : '创建新的',
 	iconCls : 'icon-plugin',
 	createWindow : function() {
+
+		// 新建会员组
+		// 新建人员
+		// 创建客户
+		// 创建期望
+		// 创建职员
 
 		var menuTree = new Ext.tree.TreePanel({
 			region : 'west',
@@ -19,40 +25,19 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 			root : new Ext.tree.AsyncTreeNode({
 				expanded : true,
 				children : [ {
-					id : 'SUPPLIER_CORPORATION',
-					text : '创建供应商(企业)',
+					id : 'CORPORATION',
+					text : '创建企业',
 					leaf : true,
 					iconCls : 'icon-user_biz',
 					partyType : 'CORPORATION',
 					partyRole : 'SUPPLIER'
 				}, {
-					id : 'SUPPLIER_PERSON',
-					text : '创建供应商(个人)',
-					leaf : true,
-					iconCls : 'icon-user-gray',
-					partyType : 'PERSON',
-					partyRole : 'SUPPLIER'
-				}, {
-					id : 'CUSTOMER_CORPORATION',
-					text : '创建客户(企业)',
-					leaf : true,
-					iconCls : 'icon-user_biz',
-					partyType : 'CORPORATION',
-					partyRole : 'CUSTOMER'
-				}, {
-					id : 'CUSTOMER_PERSON',
-					text : '创建客户(个人)',
+					id : 'PERSON',
+					text : '创建人员',
 					leaf : true,
 					iconCls : 'icon-user-gray',
 					partyType : 'PERSON',
 					partyRole : 'CUSTOMER'
-				}, {
-					id : 'EMPLOYEE',
-					text : '创建雇员',
-					leaf : true,
-					iconCls : 'icon-user-add',
-					partyType : 'PERSON',
-					partyRole : 'EMPLOYEE'
 				} ]
 			}),
 			rootVisible : false,
@@ -95,69 +80,51 @@ var partyCreate = Ext.extend(Ext.app.Module, {
 	openItem : function(node, path) {
 		Ext.log('Create Party and Type is:' + node.attributes.partyType);
 		Ext.log('Create Party and Type is:' + node.attributes.partyRole);
-		var newCustomerPanel = new PartyForm({
-			actionType : node.id,
-			partyType : node.attributes.partyType,
-			partyRole : node.attributes.partyRole,
+
+		var urls = "";
+
+		var title = "";
+
+		if (node.id == 'CORPORATION') {
+			title = '创建企业';
+			urls = 'applications/party/widget/CorporationAdd.jsp';
+		} else {
+			title = '创建个人';
+			urls = 'applications/party/widget/IndividualAdd.jsp';
+		}
+		
+		var employeeDetailsPanel = new Ext.Panel({
 			id : node.id,
-			title : node.text,
-			loadParty : false,
-			buttons : [ {
-				text : '保存',
-				type : 'submit',
-				handler : function() {
-					newCustomerPanel.form.submit({
-						url : 'partyManager.action',
-						method : 'POST',
-						waitMsg : "正在创建……",
-						params : {
-							actionType : 'NewPerson',
-							partyType : 'PERSON'
-						},
-						success : function(form, action) {
-							Ext.log('==============successfully===============');
-							var s = Ext.util.JSON.encode(action.result.ResponseBody);
-							var partyId = action.result.ResponseBody.party.partyId;
-							var c = newCustomerPanel.find('id', 'partyId');
-							if(c.length > 0 && c[0]){
-								c[0].setText(partyId);
-							}
-							
-							Ext.MessageBox.alert('提示', '创建['+partyId+'],操作成功!');
-						},
-						failure : function(form, action) {
-							var errorMsg;
-							
-							var s = Ext.util.JSON.encode(action);
-							Ext.log('==============Error===============:' + s);
-							if (action.failureType == 'connect') {
-								errorMsg = '连接服务器失败，请稍后再试!';
-							} else if (action.failureType == 'client') {
-								errorMsg = '输入信息有误!';
-							} else {
-								errorMsg = action.result.msg;
-							}
-							Ext.MessageBox.show({
-								title : '错误',
-								msg : errorMsg,
-								buttons : Ext.MessageBox.OK,
-								// fn: showResult,
-								icon : Ext.MessageBox.ERROR
-							});
-						}
-					});
+			title : title,
+			frame : true,
+			closable : true,
+			autoDestroy : true,
+			autoScroll : true,
+			iconCls : 'icon-grid',
+			autoLoad : {
+				url : util.constant.appPath + urls,
+				params : {
+					roleTypeId : 'EMPLOYEE',
+					panelID : node.id
+				},
+				scope : this,
+				scripts : true,
+				callback : function(el, success, response, options) {
+					Ext.log('[PartyList :openItem :callback ] success=' + success);
+					if (!success) {
+						Ext.MessageBox.show({
+							title : '错误',
+							msg : '产品信息加载失败',
+							buttons : Ext.Msg.OK,
+							icon : Ext.MessageBox.ERROR
+						});
+					}
 				}
-			}, {
-				text : '重置',
-				type : 'reset',
-				handler : function() {
-					newCustomerPanel.form.reset();
-				}
-			} ]
+			}
 		});
 
-		this.centerPanel.add(newCustomerPanel);
-		this.centerPanel.activate(newCustomerPanel);
-		
+		this.centerPanel.add(employeeDetailsPanel);
+		this.centerPanel.activate(employeeDetailsPanel);
+
 	}
 });

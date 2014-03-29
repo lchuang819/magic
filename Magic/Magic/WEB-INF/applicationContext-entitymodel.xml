@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC 
-       "-//SPRING//DTD BEAN//EN"
-       "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
-       
-<beans default-autowire="byName">
-	
-	<!-- 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 -->
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="  
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd  
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+     
+	<!-- Bean注入 -->
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
         
 	<bean class="org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver"/>
+	
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
         
 	<bean id="user" class="com.frm.security.entitymodel.UserLogin" scope="prototype"/>
 	<bean id="logLevel" class="com.frm.sysmanage.model.LogLevel" scope="prototype"/>
@@ -16,6 +21,7 @@
 	<bean id="party" class="com.apps.party.entitymodel.Party" scope="prototype"/>
 	<bean id="partyRole" class="com.apps.party.entitymodel.PartyRole" scope="prototype"/>
 	<bean id="partyRoleId" class="com.apps.party.entitymodel.PartyRoleId" scope="prototype"/>
+	
 	
 	<bean id="person" class="com.apps.party.entitymodel.Person" scope="prototype"/>
 	<bean id="postalAddress" class="com.apps.party.entitymodel.PostalAddress" scope="prototype"/>

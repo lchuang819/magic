@@ -28,12 +28,12 @@ var partyList = Ext.extend(Ext.app.Module, {
 					iconCls:'icon-grid'
 				}, {
 					id : 'customerDetails',
-					text : '客户信息',
+					text : '人员信息',
 					leaf : true,
 					iconCls:'icon-grid'
 				}, {
-					id : 'supplierDetails',
-					text : '供应商信息',
+					id : 'CorporateList',
+					text : '企业信息',
 					leaf : true,
 					iconCls:'icon-grid'
 				}]
@@ -187,6 +187,43 @@ var partyList = Ext.extend(Ext.app.Module, {
 			
 			this.centerPanel.add(supplierDetailsPanel);
 			this.centerPanel.activate(supplierDetailsPanel);
+			
+			Ext.getBody().unmask();
+			
+		} else if(id == 'CorporateList'){
+			Ext.log('[PartyList:openItem] init CorporateList');
+			
+			Ext.getBody().mask('加载中...');
+			
+			var CorporateListPanel = new Ext.Panel({
+				id : 'CorporateListPanel',
+				title : '客戶列表',
+				frame : true,
+				closable : true,
+				autoDestroy : true,
+				autoScroll : true,
+				iconCls : 'icon-grid',
+				autoLoad : {
+					url : util.constant.appPath + '/applications/party/widget/CorporateList.jsp', 
+					params : {partyTypeId: 'CORPORATION'},
+					scope : this, 
+					scripts : true,
+        			callback:function(el, success, response, options){
+        				Ext.log('[PartyList :openItem :callback ] success=' + success);
+    					if(!success){
+    						Ext.MessageBox.show({
+    							title:'错误',
+    							msg: '产品信息加载失败',
+    							buttons: Ext.Msg.OK,
+    							icon: Ext.MessageBox.ERROR
+    						}); 
+    					}
+    				}
+    			}
+			});
+			
+			this.centerPanel.add(CorporateListPanel);
+			this.centerPanel.activate(CorporateListPanel);
 			
 			Ext.getBody().unmask();
 		}

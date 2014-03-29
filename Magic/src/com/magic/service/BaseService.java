@@ -7,6 +7,8 @@ package com.magic.service;
 
 import java.util.Map;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -22,6 +24,10 @@ public class BaseService {
 	@Qualifier("delegator")
 	public HibernateDelegatorInterface delegator;
 	
+	@Autowired
+	@Qualifier("sessionFactory")
+	private SessionFactory sessionFactory;
+	
 
 	public HibernateDelegatorInterface getDelegator() {
 		return delegator;
@@ -34,5 +40,9 @@ public class BaseService {
 	public Map execute(Map context)  throws ExecuteServiceException{
 		
 		return null;
+	}
+	
+	public Session getSession(){
+		return sessionFactory.openSession();
 	}
 }

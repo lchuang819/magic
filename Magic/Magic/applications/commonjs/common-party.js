@@ -134,4 +134,126 @@ Ext.onReady(function(){
 		}
 		
 	});
+	
+	Magic.party.PartySummary = Ext.extend(Ext.Window, {
+		id: 'PartySummaryWindow',
+		layout:'fit',
+        width:800,
+        height:700,
+        closeAction:'hide',
+        plain: true,
+        maskDisabled: false,
+		constructor: function(config) {
+			
+			var basicDataUrl = './applications/party/widget/CorporateBasicData.jsp';
+			
+			if(config.partyType == 'PERSON'){
+				basicDataUrl = './applications/party/widget/CorporateBasicData.jsp';
+			}
+			
+			var basicDataPanel = new Ext.Panel({
+				id: 'basicDataPanel',
+				title: '基本信息',
+				frame : true,
+				closable : true,
+				autoDestroy : true,
+				autoScroll : true,
+				iconCls : 'icon-grid',
+				autoLoad : {
+					url : './applications/party/widget/CorporateBasicData.jsp',
+					params : {
+						roleTypeId : 'EMPLOYEE',
+					},
+					scope : this,
+					scripts : true,
+					callback : function(el, success, response, options) {
+						Ext.log('[PartyList :openItem :callback ] success=' + success);
+						if (!success) {
+							Ext.MessageBox.show({
+								title : '错误',
+								msg : '产品信息加载失败',
+								buttons : Ext.Msg.OK,
+								icon : Ext.MessageBox.ERROR
+							});
+						}
+					}
+				}
+			});
+			
+			var partyRolePanel = new Ext.Panel({
+				id: 'partyRolePanel',
+				title: '角色信息',
+				frame : true,
+				closable : true,
+				autoDestroy : true,
+				autoScroll : true,
+				iconCls : 'icon-grid',
+				autoLoad : {
+					url : './applications/party/widget/PartyRole.jsp',
+					params : {
+						roleTypeId : 'EMPLOYEE',
+					},
+					scope : this,
+					scripts : true,
+					callback : function(el, success, response, options) {
+						Ext.log('[PartyList :openItem :callback ] success=' + success);
+						if (!success) {
+							Ext.MessageBox.show({
+								title : '错误',
+								msg : '产品信息加载失败',
+								buttons : Ext.Msg.OK,
+								icon : Ext.MessageBox.ERROR
+							});
+						}
+					}
+				}
+			});
+			
+			var tab1 = new Ext.TabPanel({
+		        autoTabs:true,
+		        activeTab:0,
+		        deferredRender:false,
+		        border:false,
+		        items: [
+		                basicDataPanel,
+		                partyRolePanel
+		                ]
+		    });
+			
+			var sbuttons = [{
+	            text:'Submit',
+	            disabled:true
+	        },{
+	            text: 'Close',
+	            handler: this.closeDetails,
+	            scope: this
+	        }];
+			
+			config = Ext.apply({
+	            items: tab1,
+	            buttons: sbuttons
+	        }, config);
+
+			Magic.party.PartySummary.superclass.constructor.call(this, config);
+
+	    },
+	    openDetails: function(tle) {
+	    	Ext.getBody().mask();
+	    	this.show(this);
+	    },
+	    closeDetails: function(){
+	    	Ext.getBody().unmask();
+	    	this.hide();
+	    },
+	    listeners:{
+	    	'hide' : function(){
+	    		this.destroy();
+	    		Ext.getBody().unmask();
+	    	},
+	    	'close': function(){
+	    		this.destroy();
+	    	}
+	    }
+	});
+	
 });

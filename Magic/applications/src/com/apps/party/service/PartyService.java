@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.magic.service.BaseService;
 import com.magic.service.ExecuteServiceException;
+import com.magic.util.UtilValidate;
 
 /**
  * @author lchuang
@@ -22,6 +23,17 @@ public class PartyService extends BaseService{
 	@Override
 	public Map execute(Map context) throws ExecuteServiceException {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public Map createIndividualCustomerService(Map context) throws ExecuteServiceException {
+		
+		String partyId = (String) context.get("partyId");
+		
+		if(UtilValidate.isEmpty(partyId)){
+			partyId = delegator.getNextSeqId("Party");
+		}
+		
 		return null;
 	}
 
